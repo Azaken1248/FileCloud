@@ -23,17 +23,17 @@ const dynamoDBService = new AWS.DynamoDB();
 app.use(cors());
 app.use(bodyParser.json());
 
-// Function to create DynamoDB table if it doesn't exist
-const ensureTableExists = async () => {
+
+const tableExists = async () => {
   const params = {
     TableName: "Users",
     AttributeDefinitions: [
       { AttributeName: "email", AttributeType: "S" },
     ],
     KeySchema: [
-      { AttributeName: "email", KeyType: "HASH" }, // Partition key
+      { AttributeName: "email", KeyType: "HASH" }, 
     ],
-    BillingMode: "PAY_PER_REQUEST", // On-demand pricing
+    BillingMode: "PAY_PER_REQUEST", 
   };
 
   try {
@@ -51,22 +51,20 @@ const ensureTableExists = async () => {
   }
 };
 
-// Middleware to ensure table exists before processing requests
-app.use(async (req, res, next) => {
+
+app.use(async (_req, res, next) => {
   try {
-    await ensureTableExists();
+    await tableExists();
     next();
   } catch (err) {
     res.status(500).json({ error: "Error ensuring table exists" });
   }
 });
 
-// JWT token creation
 const createToken = (email) => {
   return jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "1h" });
 };
 
-// Signup endpoint
 app.post("/signup", async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -94,7 +92,6 @@ app.post("/signup", async (req, res) => {
   }
 });
 
-// Login endpoint
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -129,7 +126,6 @@ app.post("/login", async (req, res) => {
   }
 });
 
-// Protected route
 app.get("/protected", (req, res) => {
   const token = req.headers.authorization;
 
@@ -145,7 +141,7 @@ app.get("/protected", (req, res) => {
   }
 });
 
-// Start server
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
