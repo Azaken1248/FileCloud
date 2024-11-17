@@ -1,7 +1,21 @@
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AuthPage from "./screens/AuthPage";
+import Dashboard from "./screens/Dashboard";
+import PrivateRoute from "./router/PrivateRoute";
 
-export default function App() {
+const App = () => {
   return (
-    <AuthPage />
-  )
-}
+    <Router>
+      <Routes>
+        <Route path="/" element={<AuthPage />} />
+        <Route
+          path="/dashboard"
+          element={<PrivateRoute element={Dashboard} />}
+        />
+      </Routes>
+    </Router>
+  );
+};
+
+export default App;
