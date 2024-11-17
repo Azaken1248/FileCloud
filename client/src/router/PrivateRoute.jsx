@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Navigate } from "react-router-dom";
+import {Navigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
 const PrivateRoute = ({ element: Component, ...rest }) => {
@@ -10,11 +10,11 @@ const PrivateRoute = ({ element: Component, ...rest }) => {
   }
 
   try {
-    const decoded = jwtDecode(token);  // Use jwtDecode for decoding
-    const currentTime = Date.now() / 1000; // Get the current time in seconds
+    const decoded = jwtDecode(token);  
+    const currentTime = Date.now() / 1000; 
 
     if (decoded.exp < currentTime) {
-      localStorage.removeItem("token"); // Remove expired token
+      localStorage.removeItem("token");
       return <Navigate to="/" replace />;
     }
   } catch (error) {

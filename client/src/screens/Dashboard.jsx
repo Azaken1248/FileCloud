@@ -1,78 +1,164 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import FileCard from "../components/FileCard";
-import SearchBar from "../components/SearchBar"; // Import the SearchBar component
+import SearchBar from "../components/SearchBar";
+import UploadFiles from "../components/UploadFiles";
+import Loader from "../components/Loader";
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [files, setFiles] = useState([
-    { id: 1, name: "Document1.pdf", type: "PDF", size: "2 MB", lastModified: "2024-11-01" },
-    { id: 2, name: "Image1.jpg", type: "Image", size: "1.5 MB", lastModified: "2024-10-25" },
-    { id: 3, name: "Report.xlsx", type: "Excel", size: "3 MB", lastModified: "2024-10-30" },
-    { id: 4, name: "Video.mp4", type: "Video", size: "15 MB", lastModified: "2024-11-02" },
-    { id: 5, name: "Audio.mp3", type: "Audio", size: "4 MB", lastModified: "2024-10-28" },
-    { id: 6, name: "Presentation.pptx", type: "PowerPoint", size: "5 MB", lastModified: "2024-10-20" },
-    { id: 7, name: "Archive.zip", type: "Archive", size: "20 MB", lastModified: "2024-09-15" },
-    { id: 8, name: "Code.js", type: "JavaScript", size: "500 KB", lastModified: "2024-11-03" },
-    { id: 9, name: "Styles.css", type: "CSS", size: "200 KB", lastModified: "2024-10-18" },
-    { id: 10, name: "Notes.txt", type: "Text", size: "50 KB", lastModified: "2024-11-05" },
-    { id: 11, name: "Image2.png", type: "Image", size: "3.2 MB", lastModified: "2024-10-22" },
-    { id: 12, name: "VideoClip.mov", type: "Video", size: "10 MB", lastModified: "2024-10-30" },
-    { id: 13, name: "Sound.wav", type: "Audio", size: "6 MB", lastModified: "2024-11-01" },
-    { id: 14, name: "Diagram.svg", type: "Vector Image", size: "1 MB", lastModified: "2024-09-30" },
-    { id: 15, name: "Archive.rar", type: "Archive", size: "12 MB", lastModified: "2024-08-25" },
-  ]);
-  
-  const [filteredFiles, setFilteredFiles] = useState(files); // State for filtered files
-
-  const handleDelete = (fileId) => {
-    setFiles(files.filter((f) => f.id !== fileId));
-    setFilteredFiles(filteredFiles.filter((f) => f.id !== fileId)); // Update filtered files as well
-  };
-
-  const handleDownload = (fileId) => {
-    const file = files.find((f) => f.id === fileId);
-    console.log(`Downloading ${file.name}`);
-    // Add actual download logic here
-  };
-
-  const handlePreview = (fileId) => {
-    const file = files.find((f) => f.id === fileId);
-    console.log(`Previewing ${file.name}`);
-    // Add actual preview logic here
-  };
+  const [files, setFiles] = useState([]);
+  const [filteredFiles, setFilteredFiles] = useState([]);
+  const [isUploading, setIsUploading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null); 
+  const [previewFile, setPreviewFile] = useState(null); 
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  const handleUploadSuccess = (newFiles) => {
+    console.log("Upload success response:", newFiles);
+
+    const filesToAdd = Array.isArray(newFiles) ? newFiles : [newFiles];
+
+    setFiles((prevFiles) => [...prevFiles, ...filesToAdd]);
+    setFilteredFiles((prevFilteredFiles) => [...prevFilteredFiles, ...filesToAdd]);
+    setIsUploading(false); 
+  };
+
+  const username = localStorage.getItem("username"); 
+
+  useEffect(() => {
+    const fetchFiles = async () => {
+      setLoading(true);
+      if (!username) {
+        setError("Username is required");
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const response = await fetch(`http://localhost:3000/files?username=${username}`, { 
+          method: "GET",
+        });
+
+        const contentType = response.headers.get("Content-Type");
+        if (contentType && contentType.includes("application/json")) {
+          const data = await response.json();
+          setFiles(data);
+          setFilteredFiles(data); 
+        } else {
+          throw new Error("Invalid response format");
+        }
+      } catch (err) {
+        setError(err.message); 
+      } finally {
+        setLoading(false); 
+      }
+    };
+
+    fetchFiles();
+  }, [username]);
+
+  const handleDelete = async (fileId) => {
+    try {
+      const confirmation = window.confirm("Are you sure you want to delete this file?");
+      if (!confirmation) return;
+  
+      const response = await fetch(`http://localhost:3000/files/${fileId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      if (response.ok) {
+        const result = await response.json();
+        console.log(result.message); 
+
+      } else {
+        const errorData = await response.json();
+        console.error('Error:', errorData.error);
+      }
+    } catch (err) {
+      console.error('Error during delete operation:', err);
+    }
+  };
+  
+
+  const handleDownload = async (file) => {
+    console.log(file);
+
+    if (file && file.fileUrl) {
+      const fileUrl = file.fileUrl;
+  
+      window.open(fileUrl, "_blank");
+    } else {
+      console.error("Invalid file URL");
+    }
+  };
+
+  console.log(files);
+
   return (
     <div className="relative">
-      {/* Navbar */}
       <Navbar onToggleSidebar={toggleSidebar} />
 
-      {/* Sidebar */}
       <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
 
-      {/* Main Content */}
-      <div
-        className={`transition-all duration-300 ${isSidebarOpen ? "lg:ml-64" : ""} min-h-screen bg-gray-800 text-white p-6`}
-      >
-        {/* SearchBar Component */}
-        <SearchBar setFilteredFiles={setFilteredFiles} files={files} />
+      <div className={`transition-all duration-300 ${isSidebarOpen ? "lg:ml-64" : ""} min-h-screen bg-gray-800 text-white p-6`}>
+        <div className="flex items-center justify-center mb-6 gap-4">
+          <SearchBar setFilteredFiles={setFilteredFiles} files={files} setIsUploading={setIsUploading} />
+        </div>
 
-        {/* Grid Layout for Files */}
-        <div className="grid gap-4 grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-7">
-          {filteredFiles.map((file) => (
-            <FileCard
-              key={file.id}
-              file={file}
-              onDelete={() => handleDelete(file.id)}
-              onDownload={() => handleDownload(file.id)}
-              onPreview={() => handlePreview(file.id)}
-            />
-          ))}
+        {isUploading && (
+          <div className="bg-gray-900 p-4 rounded-lg mb-6">
+            <UploadFiles onUploadSuccess={handleUploadSuccess} />
+          </div>
+        )}
+
+        {loading && (
+          <div className="flex justify-center min-h-screen bg-gray-800">
+            <Loader />
+          </div>
+        )}
+    
+        {error && <div className="text-center text-red-500">{error}</div>}
+
+        {previewFile && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white p-6 rounded-lg w-1/2">
+              <h2 className="text-2xl mb-4">Preview: {previewFile.fileName}</h2>
+              {previewFile.fileType.startsWith("image") && (
+                <img src={previewFile.fileUrl} alt="Preview" className="w-full h-auto" />
+              )}
+
+              <button
+                onClick={() => setPreviewFile(null)}
+                className="mt-4 text-red-500 hover:text-red-700"
+              >
+                Close Preview
+              </button>
+            </div>
+          </div>
+        )}
+
+        <div className="flex flex-col gap-4 sm:grid sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-7">
+          {filteredFiles.length === 0 ? (
+            <div className="col-span-full text-center text-gray-500">No files available</div> 
+          ) : (
+            filteredFiles.map((file) => (
+              <FileCard
+                key={file.fileId}
+                file={file}
+                onDelete={() => handleDelete(file.fileId)} 
+                onDownload={() => handleDownload(file)} 
+              />
+            ))
+          )}
         </div>
       </div>
     </div>

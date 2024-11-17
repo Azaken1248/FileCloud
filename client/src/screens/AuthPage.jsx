@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom"; 
 import Loader from "../components/Loader";
 
 const AuthPage = () => {
@@ -11,7 +11,7 @@ const AuthPage = () => {
   });
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false); 
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
 
   const toggleAuthMode = () => {
     setIsLogin(!isLogin);
@@ -44,7 +44,8 @@ const AuthPage = () => {
         setMessage(isLogin ? "Login successful!" : "Signup successful!");
         if (isLogin) {
           localStorage.setItem("token", data.token);
-          navigate("/dashboard"); // Redirect to Dashboard after login
+          localStorage.setItem("username", data.username);
+          navigate("/dashboard"); 
         }
       } else {
         setMessage(data.error || "An error occurred");
