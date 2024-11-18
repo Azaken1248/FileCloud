@@ -83,6 +83,7 @@ const getFileIcon = (fileName) => {
     kotlin: <FaFileCode className="text-orange-500 text-6xl" />,
 
     osu: <FaFileAudio className="text-pink-500 text-6xl" />, 
+    osz: <FaFileAudio className="text-pink-500 text-6xl" />,  
 
     env: <FaFileAlt className="text-gray-400 text-6xl" />,
     ini: <FaFileAlt className="text-gray-300 text-6xl" />,
