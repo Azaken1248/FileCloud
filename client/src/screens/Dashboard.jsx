@@ -41,7 +41,7 @@ const Dashboard = () => {
       }
 
       try {
-        const response = await fetch(`http://localhost:3000/files?username=${username}`, { 
+        const response = await fetch(`https://skibidi2.rrex.cc/files?username=${username}`, { 
           method: "GET",
         });
 
@@ -68,7 +68,7 @@ const Dashboard = () => {
       const confirmation = window.confirm("Are you sure you want to delete this file?");
       if (!confirmation) return;
   
-      const response = await fetch(`http://localhost:3000/files/${fileId}`, {
+      const response = await fetch(`https://skibidi2.rrex.cc/files/${fileId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

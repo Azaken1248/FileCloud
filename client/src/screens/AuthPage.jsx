@@ -29,8 +29,8 @@ const AuthPage = () => {
     setLoading(true); 
 
     const url = isLogin
-      ? "http://localhost:3000/login"
-      : "http://localhost:3000/signup";
+      ? "https://skibidi2.rrex.cc/login"
+      : "https://skibidi2.rrex.cc/signup";
 
     try {
       const response = await fetch(url, {

@@ -53,7 +53,7 @@ const UploadFiles = ({ onUploadSuccess }) => {
     }
   
     try {
-      const response = await fetch("http://localhost:3000/upload", {
+      const response = await fetch("https://skibidi2.rrex.cc/upload", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
