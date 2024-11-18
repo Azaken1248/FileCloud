@@ -11,7 +11,9 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "aws-lambda-helpers": "^0.1.6",
     "aws-sdk": "^2.1692.0",
+    "aws-serverless-express": "^3.4.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
