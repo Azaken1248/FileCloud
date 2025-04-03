@@ -53,7 +53,7 @@ const UploadFiles = ({ onUploadSuccess }) => {
     }
   
     try {
-      const response = await fetch("https://skibidi2.rrex.cc/upload", {
+      const response = await fetch("https://api.filecloud.azaken.com/upload", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

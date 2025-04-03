@@ -29,8 +29,8 @@ const AuthPage = () => {
     setLoading(true); 
 
     const url = isLogin
-      ? "https://skibidi2.rrex.cc/login"
-      : "https://skibidi2.rrex.cc/signup";
+      ? "https://api.filecloud.azaken.com/login"
+      : "https://api.filecloud.azaken.com/signup";
 
     try {
       const response = await fetch(url, {
