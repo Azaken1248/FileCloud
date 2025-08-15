@@ -1,0 +1,2087 @@
+{
+  "iconDefinitions": {
+    "3d": {
+      "iconPath": "./icons/3d.svg"
+    },
+    "abap": {
+      "iconPath": "./icons/abap.svg",
+      "fileExtensions": ["abap"]
+    },
+    "abc": {
+      "iconPath": "./icons/abc.svg",
+      "fileExtensions": ["abc"]
+    },
+    "actionscript": {
+      "iconPath": "./icons/actionscript.svg",
+      "fileExtensions": ["as"]
+    },
+    "ada": {
+      "iconPath": "./icons/ada.svg",
+      "fileExtensions": ["ada", "adb", "ads"]
+    },
+    "adobe-illustrator": {
+      "iconPath": "./icons/adobe-illustrator.svg",
+      "fileExtensions": ["ai"]
+    },
+    "adobe-photoshop": {
+      "iconPath": "./icons/adobe-photoshop.svg",
+      "fileExtensions": ["psd"]
+    },
+    "adobe-swc": {
+      "iconPath": "./icons/adobe-swc.svg",
+      "fileExtensions": ["swc"]
+    },
+    "adonis": {
+      "iconPath": "./icons/adonis.svg"
+    },
+    "advpl": {
+      "iconPath": "./icons/advpl.svg",
+      "fileExtensions": ["prw", "prx"]
+    },
+    "amplify": {
+      "iconPath": "./icons/amplify.svg"
+    },
+    "android": {
+      "iconPath": "./icons/android.svg"
+    },
+    "angular": {
+      "iconPath": "./icons/angular.svg"
+    },
+    "antlr": {
+      "iconPath": "./icons/antlr.svg",
+      "fileExtensions": ["g4"]
+    },
+    "apiblueprint": {
+      "iconPath": "./icons/apiblueprint.svg",
+      "fileExtensions": ["apib", "apiblueprint"]
+    },
+    "apollo": {
+      "iconPath": "./icons/apollo.svg"
+    },
+    "applescript": {
+      "iconPath": "./icons/applescript.svg",
+      "fileExtensions": ["applescript", "scpt"]
+    },
+    "apps-script": {
+      "iconPath": "./icons/apps-script.svg"
+    },
+    "appveyor": {
+      "iconPath": "./icons/appveyor.svg",
+      "fileNames": ["appveyor.yml", ".appveyor.yml"]
+    },
+    "architecture": {
+      "iconPath": "./icons/architecture.svg"
+    },
+    "arduino": {
+      "iconPath": "./icons/arduino.svg",
+      "fileExtensions": ["ino"]
+    },
+    "asciidoc": {
+      "iconPath": "./icons/asciidoc.svg",
+      "fileExtensions": ["adoc", "asciidoc"]
+    },
+    "assembly": {
+      "iconPath": "./icons/assembly.svg",
+      "fileExtensions": ["s", "asm"]
+    },
+    "astro": {
+      "iconPath": "./icons/astro.svg",
+      "fileExtensions": ["astro"]
+    },
+    "astyle": {
+      "iconPath": "./icons/astyle.svg",
+      "fileNames": [".astylerc"]
+    },
+    "audio": {
+      "iconPath": "./icons/audio.svg"
+    },
+    "aurelia": {
+      "iconPath": "./icons/aurelia.svg",
+      "fileNames": ["aurelia.json"]
+    },
+    "authors": {
+      "iconPath": "./icons/authors.svg",
+      "fileNames": ["authors", "authors.md", "authors.txt"]
+    },
+    "auto": {
+      "iconPath": "./icons/auto.svg"
+    },
+    "autohotkey": {
+      "iconPath": "./icons/autohotkey.svg",
+      "fileExtensions": ["ahk"]
+    },
+    "autoit": {
+      "iconPath": "./icons/autoit.svg",
+      "fileExtensions": ["au3"]
+    },
+    "azure-pipelines": {
+      "iconPath": "./icons/azure-pipelines.svg",
+      "fileNames": ["azure-pipelines.yml", ".azure-pipelines.yml"]
+    },
+    "azure": {
+      "iconPath": "./icons/azure.svg"
+    },
+    "babel": {
+      "iconPath": "./icons/babel.svg",
+      "fileNames": [".babelrc", "babel.config.js", "babel.config.json"]
+    },
+    "ballerina": {
+      "iconPath": "./icons/ballerina.svg",
+      "fileExtensions": ["bal", "balx"]
+    },
+    "bazel": {
+      "iconPath": "./icons/bazel.svg",
+      "fileExtensions": ["bzl", "bazel"]
+    },
+    "bbx": {
+      "iconPath": "./icons/bbx.svg",
+      "fileExtensions": ["bbx"]
+    },
+    "beancount": {
+      "iconPath": "./icons/beancount.svg",
+      "fileExtensions": ["beancount"]
+    },
+    "bibliography": {
+      "iconPath": "./icons/bibliography.svg",
+      "fileExtensions": ["bib", "bibtex"]
+    },
+    "bibtex-style": {
+      "iconPath": "./icons/bibtex-style.svg",
+      "fileExtensions": ["bst"]
+    },
+    "bicep": {
+      "iconPath": "./icons/bicep.svg",
+      "fileExtensions": ["bicep"]
+    },
+    "biome": {
+      "iconPath": "./icons/biome.svg",
+      "fileNames": ["biome.json"]
+    },
+    "bitbucket": {
+      "iconPath": "./icons/bitbucket.svg",
+      "fileNames": ["bitbucket-pipelines.yml"]
+    },
+    "bithound": {
+      "iconPath": "./icons/bithound.svg",
+      "fileNames": [".bithoundrc"]
+    },
+    "blender": {
+      "iconPath": "./icons/blender.svg",
+      "fileExtensions": ["blend"]
+    },
+    "blink": {
+      "iconPath": "./icons/blink.svg",
+      "fileExtensions": ["blink"]
+    },
+    "blitz": {
+      "iconPath": "./icons/blitz.svg",
+      "fileNames": ["blitz.config.js", "blitz.config.ts"]
+    },
+    "bower": {
+      "iconPath": "./icons/bower.svg",
+      "fileNames": [".bowerrc", "bower.json"]
+    },
+    "brainfuck": {
+      "iconPath": "./icons/brainfuck.svg",
+      "fileExtensions": ["b", "bf"]
+    },
+    "browserlist": {
+      "iconPath": "./icons/browserlist.svg",
+      "fileNames": [".browserslistrc", "browserslist"]
+    },
+    "bruno": {
+      "iconPath": "./icons/bruno.svg",
+      "fileExtensions": ["bru"]
+    },
+    "buck": {
+      "iconPath": "./icons/buck.svg",
+      "fileNames": [".buckconfig"]
+    },
+    "bucklescript": {
+      "iconPath": "./icons/bucklescript.svg",
+      "fileExtensions": ["cmj"]
+    },
+    "buildkite": {
+      "iconPath": "./icons/buildkite.svg",
+      "fileNames": ["buildkite.yml", "buildkite.yaml"]
+    },
+    "bun": {
+      "iconPath": "./icons/bun.svg",
+      "fileNames": ["bun.lockb"]
+    },
+    "c": {
+      "iconPath": "./icons/c.svg",
+      "fileExtensions": ["c"]
+    },
+    "c3": {
+      "iconPath": "./icons/c3.svg",
+      "fileExtensions": ["c3"]
+    },
+    "cabal": {
+      "iconPath": "./icons/cabal.svg",
+      "fileExtensions": ["cabal"]
+    },
+    "caddy": {
+      "iconPath": "./icons/caddy.svg",
+      "fileNames": ["Caddyfile"]
+    },
+    "cadence": {
+      "iconPath": "./icons/cadence.svg",
+      "fileExtensions": ["cdc"]
+    },
+    "cairo": {
+      "iconPath": "./icons/cairo.svg",
+      "fileExtensions": ["cairo"]
+    },
+    "cake": {
+      "iconPath": "./icons/cake.svg",
+      "fileExtensions": ["cake"]
+    },
+    "capacitor": {
+      "iconPath": "./icons/capacitor.svg",
+      "fileNames": ["capacitor.config.json", "capacitor.config.ts"]
+    },
+    "capnp": {
+      "iconPath": "./icons/capnp.svg",
+      "fileExtensions": ["capnp"]
+    },
+    "cbx": {
+      "iconPath": "./icons/cbx.svg",
+      "fileExtensions": ["cbx"]
+    },
+    "cds": {
+      "iconPath": "./icons/cds.svg",
+      "fileExtensions": ["cds"]
+    },
+    "certificate": {
+      "iconPath": "./icons/certificate.svg",
+      "fileExtensions": ["cer", "crt", "pem"]
+    },
+    "changelog": {
+      "iconPath": "./icons/changelog.svg",
+      "fileNames": ["changelog", "changelog.md", "changelog.txt"]
+    },
+    "chess": {
+      "iconPath": "./icons/chess.svg"
+    },
+    "chrome": {
+      "iconPath": "./icons/chrome.svg"
+    },
+    "circleci": {
+      "iconPath": "./icons/circleci.svg",
+      "fileNames": [".circleci/config.yml"]
+    },
+    "citation": {
+      "iconPath": "./icons/citation.svg",
+      "fileNames": ["citation", "citation.cff"]
+    },
+    "clangd": {
+      "iconPath": "./icons/clangd.svg",
+      "fileNames": [".clangd"]
+    },
+    "claude": {
+      "iconPath": "./icons/claude.svg"
+    },
+    "cline": {
+      "iconPath": "./icons/cline.svg"
+    },
+    "clojure": {
+      "iconPath": "./icons/clojure.svg",
+      "fileExtensions": ["clj", "cljs", "cljc"]
+    },
+    "cloudfoundry": {
+      "iconPath": "./icons/cloudfoundry.svg",
+      "fileNames": [".cfignore"]
+    },
+    "cmake": {
+      "iconPath": "./icons/cmake.svg",
+      "fileExtensions": ["cmake"]
+    },
+    "coala": {
+      "iconPath": "./icons/coala.svg",
+      "fileExtensions": ["coarc"]
+    },
+    "cobol": {
+      "iconPath": "./icons/cobol.svg",
+      "fileExtensions": ["cbl", "cob"]
+    },
+    "coconut": {
+      "iconPath": "./icons/coconut.svg",
+      "fileExtensions": ["coco"]
+    },
+    "code-climate": {
+      "iconPath": "./icons/code-climate.svg",
+      "fileNames": [".codeclimate.yml"]
+    },
+    "codecov": {
+      "iconPath": "./icons/codecov.svg",
+      "fileNames": [".codecov.yml", "codecov.yml"]
+    },
+    "codeowners": {
+      "iconPath": "./icons/codeowners.svg",
+      "fileNames": ["codeowners"]
+    },
+    "coderabbit-ai": {
+      "iconPath": "./icons/coderabbit-ai.svg"
+    },
+    "coffee": {
+      "iconPath": "./icons/coffee.svg",
+      "fileExtensions": ["coffee"]
+    },
+    "coldfusion": {
+      "iconPath": "./icons/coldfusion.svg",
+      "fileExtensions": ["cfm", "cfc"]
+    },
+    "coloredpetrinets": {
+      "iconPath": "./icons/coloredpetrinets.svg"
+    },
+    "command": {
+      "iconPath": "./icons/command.svg",
+      "fileExtensions": ["cmd", "bat"]
+    },
+    "commitizen": {
+      "iconPath": "./icons/commitizen.svg",
+      "fileNames": [".czrc", ".cz.json"]
+    },
+    "commitlint": {
+      "iconPath": "./icons/commitlint.svg",
+      "fileNames": [
+        ".commitlintrc.js",
+        ".commitlintrc.json",
+        ".commitlintrc.yml"
+      ]
+    },
+    "concourse": {
+      "iconPath": "./icons/concourse.svg"
+    },
+    "conduct": {
+      "iconPath": "./icons/conduct.svg",
+      "fileNames": ["code_of_conduct.md", "code_of_conduct.txt"]
+    },
+    "console": {
+      "iconPath": "./icons/console.svg"
+    },
+    "contentlayer": {
+      "iconPath": "./icons/contentlayer.svg",
+      "fileNames": ["contentlayer.config.js", "contentlayer.config.ts"]
+    },
+    "context": {
+      "iconPath": "./icons/context.svg"
+    },
+    "contributing": {
+      "iconPath": "./icons/contributing.svg",
+      "fileNames": ["contributing.md", "contributing.txt"]
+    },
+    "controller": {
+      "iconPath": "./icons/controller.svg"
+    },
+    "copilot": {
+      "iconPath": "./icons/copilot.svg"
+    },
+    "cpp": {
+      "iconPath": "./icons/cpp.svg",
+      "fileExtensions": ["cpp", "cc", "cxx"]
+    },
+    "craco": {
+      "iconPath": "./icons/craco.svg",
+      "fileNames": ["craco.config.js"]
+    },
+    "credits": {
+      "iconPath": "./icons/credits.svg",
+      "fileNames": ["credits", "credits.md", "credits.txt"]
+    },
+    "crystal": {
+      "iconPath": "./icons/crystal.svg",
+      "fileExtensions": ["cr"]
+    },
+    "csharp": {
+      "iconPath": "./icons/csharp.svg",
+      "fileExtensions": ["cs", "csx"]
+    },
+    "css-map": {
+      "iconPath": "./icons/css-map.svg",
+      "fileExtensions": ["css.map"]
+    },
+    "css": {
+      "iconPath": "./icons/css.svg",
+      "fileExtensions": ["css"]
+    },
+    "cucumber": {
+      "iconPath": "./icons/cucumber.svg",
+      "fileExtensions": ["feature"]
+    },
+    "cuda": {
+      "iconPath": "./icons/cuda.svg",
+      "fileExtensions": ["cu", "cuh"]
+    },
+    "cypress": {
+      "iconPath": "./icons/cypress.svg",
+      "fileNames": ["cypress.json", "cypress.config.js", "cypress.config.ts"]
+    },
+    "d": {
+      "iconPath": "./icons/d.svg",
+      "fileExtensions": ["d"]
+    },
+    "dart": {
+      "iconPath": "./icons/dart.svg",
+      "fileExtensions": ["dart"]
+    },
+    "database": {
+      "iconPath": "./icons/database.svg",
+      "fileExtensions": ["db", "sql"]
+    },
+    "deepsource": {
+      "iconPath": "./icons/deepsource.svg",
+      "fileNames": [".deepsource.toml"]
+    },
+    "denizenscript": {
+      "iconPath": "./icons/denizenscript.svg",
+      "fileExtensions": ["dsc"]
+    },
+    "deno": {
+      "iconPath": "./icons/deno.svg",
+      "fileNames": ["deno.json", "deno.jsonc"]
+    },
+    "dependabot": {
+      "iconPath": "./icons/dependabot.svg",
+      "fileNames": ["dependabot.yml"]
+    },
+    "dependencies-update": {
+      "iconPath": "./icons/dependencies-update.svg"
+    },
+    "dhall": {
+      "iconPath": "./icons/dhall.svg",
+      "fileExtensions": ["dhall"]
+    },
+    "diff": {
+      "iconPath": "./icons/diff.svg",
+      "fileExtensions": ["diff", "patch"]
+    },
+    "dinophp": {
+      "iconPath": "./icons/dinophp.svg"
+    },
+    "disc": {
+      "iconPath": "./icons/disc.svg",
+      "fileExtensions": ["iso"]
+    },
+    "django": {
+      "iconPath": "./icons/django.svg",
+      "fileExtensions": ["djt"]
+    },
+    "dll": {
+      "iconPath": "./icons/dll.svg",
+      "fileExtensions": ["dll"]
+    },
+    "docker": {
+      "iconPath": "./icons/docker.svg",
+      "fileNames": ["dockerfile", ".dockerignore", "docker-compose.yml"]
+    },
+    "doctex-installer": {
+      "iconPath": "./icons/doctex-installer.svg"
+    },
+    "document": {
+      "iconPath": "./icons/document.svg",
+      "fileExtensions": ["doc", "docx"]
+    },
+    "dotjs": {
+      "iconPath": "./icons/dotjs.svg",
+      "fileExtensions": ["dot"]
+    },
+    "drawio": {
+      "iconPath": "./icons/drawio.svg",
+      "fileExtensions": ["drawio", "dio"]
+    },
+    "drizzle": {
+      "iconPath": "./icons/drizzle.svg"
+    },
+    "drone": {
+      "iconPath": "./icons/drone.svg",
+      "fileNames": [".drone.yml"]
+    },
+    "duc": {
+      "iconPath": "./icons/duc.svg"
+    },
+    "dune": {
+      "iconPath": "./icons/dune.svg",
+      "fileNames": ["dune", "dune-project"]
+    },
+    "edge": {
+      "iconPath": "./icons/edge.svg"
+    },
+    "editorconfig": {
+      "iconPath": "./icons/editorconfig.svg",
+      "fileNames": [".editorconfig"]
+    },
+    "ejs": {
+      "iconPath": "./icons/ejs.svg",
+      "fileExtensions": ["ejs"]
+    },
+    "elixir": {
+      "iconPath": "./icons/elixir.svg",
+      "fileExtensions": ["ex", "exs"]
+    },
+    "elm": {
+      "iconPath": "./icons/elm.svg",
+      "fileExtensions": ["elm"]
+    },
+    "email": {
+      "iconPath": "./icons/email.svg",
+      "fileNames": [".mailmap", ".mailignore"]
+    },
+    "ember": {
+      "iconPath": "./icons/ember.svg",
+      "fileNames": [".ember-cli"]
+    },
+    "epub": {
+      "iconPath": "./icons/epub.svg",
+      "fileExtensions": ["epub"]
+    },
+    "erlang": {
+      "iconPath": "./icons/erlang.svg",
+      "fileExtensions": ["erl", "hrl"]
+    },
+    "esbuild": {
+      "iconPath": "./icons/esbuild.svg",
+      "fileNames": ["esbuild.js", "esbuild.ts"]
+    },
+    "eslint": {
+      "iconPath": "./icons/eslint.svg",
+      "fileNames": [
+        ".eslintrc.js",
+        ".eslintrc.json",
+        ".eslintrc.yml",
+        ".eslintrc"
+      ]
+    },
+    "excalidraw": {
+      "iconPath": "./icons/excalidraw.svg",
+      "fileExtensions": ["excalidraw"]
+    },
+    "exe": {
+      "iconPath": "./icons/exe.svg",
+      "fileExtensions": ["exe"]
+    },
+    "fastlane": {
+      "iconPath": "./icons/fastlane.svg",
+      "fileNames": ["fastfile", "appfile"]
+    },
+    "favicon": {
+      "iconPath": "./icons/favicon.svg",
+      "fileNames": ["favicon.ico"]
+    },
+    "figma": {
+      "iconPath": "./icons/figma.svg",
+      "fileExtensions": ["fig"]
+    },
+    "firebase": {
+      "iconPath": "./icons/firebase.svg",
+      "fileNames": ["firebase.json", ".firebaserc"]
+    },
+    "flash": {
+      "iconPath": "./icons/flash.svg",
+      "fileExtensions": ["swf", "fla"]
+    },
+    "flow": {
+      "iconPath": "./icons/flow.svg",
+      "fileNames": [".flowconfig"]
+    },
+    "font": {
+      "iconPath": "./icons/font.svg",
+      "fileExtensions": ["woff", "woff2", "ttf", "otf", "eot"]
+    },
+    "forth": {
+      "iconPath": "./icons/forth.svg",
+      "fileExtensions": ["fth", "4th"]
+    },
+    "fortran": {
+      "iconPath": "./icons/fortran.svg",
+      "fileExtensions": ["f", "f90", "f95"]
+    },
+    "foxpro": {
+      "iconPath": "./icons/foxpro.svg",
+      "fileExtensions": ["prg", "fxp"]
+    },
+    "freemarker": {
+      "iconPath": "./icons/freemarker.svg",
+      "fileExtensions": ["ftl"]
+    },
+    "fsharp": {
+      "iconPath": "./icons/fsharp.svg",
+      "fileExtensions": ["fs", "fsx", "fsi"]
+    },
+    "fusebox": {
+      "iconPath": "./icons/fusebox.svg",
+      "fileNames": ["fuse.js"]
+    },
+    "gamemaker": {
+      "iconPath": "./icons/gamemaker.svg",
+      "fileExtensions": ["gmx", "yy"]
+    },
+    "garden": {
+      "iconPath": "./icons/garden.svg"
+    },
+    "gatsby": {
+      "iconPath": "./icons/gatsby.svg",
+      "fileNames": [
+        "gatsby-config.js",
+        "gatsby-node.js",
+        "gatsby-browser.js",
+        "gatsby-ssr.js"
+      ]
+    },
+    "gcp": {
+      "iconPath": "./icons/gcp.svg"
+    },
+    "gemfile": {
+      "iconPath": "./icons/gemfile.svg",
+      "fileNames": ["gemfile"]
+    },
+    "gemini-ai": {
+      "iconPath": "./icons/gemini-ai.svg"
+    },
+    "gemini": {
+      "iconPath": "./icons/gemini.svg",
+      "fileExtensions": ["gemini", "gmi"]
+    },
+    "git": {
+      "iconPath": "./icons/git.svg",
+      "fileNames": [".git", ".gitignore", ".gitattributes", ".gitmodules"]
+    },
+    "github-actions-workflow": {
+      "iconPath": "./icons/github-actions-workflow.svg"
+    },
+    "github-sponsors": {
+      "iconPath": "./icons/github-sponsors.svg"
+    },
+    "gitlab": {
+      "iconPath": "./icons/gitlab.svg",
+      "fileNames": [".gitlab-ci.yml"]
+    },
+    "gitpod": {
+      "iconPath": "./icons/gitpod.svg",
+      "fileNames": [".gitpod.yml"]
+    },
+    "gleam": {
+      "iconPath": "./icons/gleam.svg",
+      "fileExtensions": ["gleam"]
+    },
+    "gnuplot": {
+      "iconPath": "./icons/gnuplot.svg",
+      "fileExtensions": ["gp", "gnuplot"]
+    },
+    "go_gopher": {
+      "iconPath": "./icons/go_gopher.svg"
+    },
+    "go-mod": {
+      "iconPath": "./icons/go-mod.svg",
+      "fileNames": ["go.mod", "go.sum"]
+    },
+    "go": {
+      "iconPath": "./icons/go.svg",
+      "fileExtensions": ["go"]
+    },
+    "godot-assets": {
+      "iconPath": "./icons/godot-assets.svg"
+    },
+    "godot": {
+      "iconPath": "./icons/godot.svg",
+      "fileExtensions": ["gd"]
+    },
+    "gradle": {
+      "iconPath": "./icons/gradle.svg",
+      "fileExtensions": ["gradle"]
+    },
+    "grafana-alloy": {
+      "iconPath": "./icons/grafana-alloy.svg"
+    },
+    "grain": {
+      "iconPath": "./icons/grain.svg",
+      "fileExtensions": ["gr"]
+    },
+    "graphcool": {
+      "iconPath": "./icons/graphcool.svg",
+      "fileNames": ["graphcool.yml"]
+    },
+    "graphql": {
+      "iconPath": "./icons/graphql.svg",
+      "fileExtensions": ["graphql", "gql"]
+    },
+    "gridsome": {
+      "iconPath": "./icons/gridsome.svg",
+      "fileNames": [
+        "gridsome.config.js",
+        "gridsome.server.js",
+        "gridsome.client.js"
+      ]
+    },
+    "groovy": {
+      "iconPath": "./icons/groovy.svg",
+      "fileExtensions": ["groovy"]
+    },
+    "grunt": {
+      "iconPath": "./icons/grunt.svg",
+      "fileNames": ["gruntfile.js"]
+    },
+    "gulp": {
+      "iconPath": "./icons/gulp.svg",
+      "fileNames": ["gulpfile.js"]
+    },
+    "h": {
+      "iconPath": "./icons/h.svg",
+      "fileExtensions": ["h"]
+    },
+    "hack": {
+      "iconPath": "./icons/hack.svg",
+      "fileExtensions": ["hack", "hh"]
+    },
+    "hadolint": {
+      "iconPath": "./icons/hadolint.svg",
+      "fileNames": [".hadolint.yaml", ".hadolint.yml"]
+    },
+    "haml": {
+      "iconPath": "./icons/haml.svg",
+      "fileExtensions": ["haml"]
+    },
+    "handlebars": {
+      "iconPath": "./icons/handlebars.svg",
+      "fileExtensions": ["hbs", "handlebars"]
+    },
+    "hardhat": {
+      "iconPath": "./icons/hardhat.svg",
+      "fileNames": ["hardhat.config.js", "hardhat.config.ts"]
+    },
+    "harmonix": {
+      "iconPath": "./icons/harmonix.svg"
+    },
+    "haskell": {
+      "iconPath": "./icons/haskell.svg",
+      "fileExtensions": ["hs", "lhs"]
+    },
+    "haxe": {
+      "iconPath": "./icons/haxe.svg",
+      "fileExtensions": ["hx"]
+    },
+    "hcl": {
+      "iconPath": "./icons/hcl.svg",
+      "fileExtensions": ["hcl"]
+    },
+    "helm": {
+      "iconPath": "./icons/helm.svg",
+      "fileNames": [".helmignore"]
+    },
+    "heroku": {
+      "iconPath": "./icons/heroku.svg",
+      "fileNames": ["procfile"]
+    },
+    "hex": {
+      "iconPath": "./icons/hex.svg",
+      "fileExtensions": ["hex"]
+    },
+    "histoire": {
+      "iconPath": "./icons/histoire.svg"
+    },
+    "hjson": {
+      "iconPath": "./icons/hjson.svg",
+      "fileExtensions": ["hjson"]
+    },
+    "horusec": {
+      "iconPath": "./icons/horusec.svg",
+      "fileNames": ["horusec-config.json"]
+    },
+    "hosts": {
+      "iconPath": "./icons/hosts.svg",
+      "fileNames": ["hosts"]
+    },
+    "hpp": {
+      "iconPath": "./icons/hpp.svg",
+      "fileExtensions": ["hpp", "hh", "hxx"]
+    },
+    "html": {
+      "iconPath": "./icons/html.svg",
+      "fileExtensions": ["html", "htm"]
+    },
+    "http": {
+      "iconPath": "./icons/http.svg",
+      "fileExtensions": ["http", "rest"]
+    },
+    "huff": {
+      "iconPath": "./icons/huff.svg",
+      "fileExtensions": ["huff"]
+    },
+    "hurl": {
+      "iconPath": "./icons/hurl.svg",
+      "fileExtensions": ["hurl"]
+    },
+    "husky": {
+      "iconPath": "./icons/husky.svg",
+      "fileNames": [".huskyrc", "husky.config.js"]
+    },
+    "i18n": {
+      "iconPath": "./icons/i18n.svg"
+    },
+    "idris": {
+      "iconPath": "./icons/idris.svg",
+      "fileExtensions": ["idr", "lidr"]
+    },
+    "ifanr-cloud": {
+      "iconPath": "./icons/ifanr-cloud.svg"
+    },
+    "image": {
+      "iconPath": "./icons/image.svg",
+      "fileExtensions": ["jpeg", "jpg", "png", "gif", "webp", "bmp"]
+    },
+    "imba": {
+      "iconPath": "./icons/imba.svg",
+      "fileExtensions": ["imba"]
+    },
+    "installation": {
+      "iconPath": "./icons/installation.svg"
+    },
+    "ionic": {
+      "iconPath": "./icons/ionic.svg",
+      "fileNames": ["ionic.config.json"]
+    },
+    "istanbul": {
+      "iconPath": "./icons/istanbul.svg",
+      "fileNames": [".nycrc", ".nycrc.json"]
+    },
+    "jar": {
+      "iconPath": "./icons/jar.svg",
+      "fileExtensions": ["jar"]
+    },
+    "java": {
+      "iconPath": "./icons/java.svg",
+      "fileExtensions": ["java"]
+    },
+    "javaclass": {
+      "iconPath": "./icons/javaclass.svg",
+      "fileExtensions": ["class"]
+    },
+    "javascript-map": {
+      "iconPath": "./icons/javascript-map.svg",
+      "fileExtensions": ["js.map"]
+    },
+    "javascript": {
+      "iconPath": "./icons/javascript.svg",
+      "fileExtensions": ["js", "mjs", "cjs"]
+    },
+    "jenkins": {
+      "iconPath": "./icons/jenkins.svg",
+      "fileNames": ["jenkinsfile"]
+    },
+    "jest": {
+      "iconPath": "./icons/jest.svg",
+      "fileNames": [
+        "jest.config.js",
+        "jest.config.ts",
+        "jest.setup.js",
+        "jest.setup.ts"
+      ]
+    },
+    "jinja": {
+      "iconPath": "./icons/jinja.svg",
+      "fileExtensions": ["jinja", "j2"]
+    },
+    "jsconfig": {
+      "iconPath": "./icons/jsconfig.svg",
+      "fileNames": ["jsconfig.json"]
+    },
+    "json": {
+      "iconPath": "./icons/json.svg",
+      "fileExtensions": ["json", "jsonc", "json5"]
+    },
+    "jsr": {
+      "iconPath": "./icons/jsr.svg"
+    },
+    "julia": {
+      "iconPath": "./icons/julia.svg",
+      "fileExtensions": ["jl"]
+    },
+    "jupyter": {
+      "iconPath": "./icons/jupyter.svg",
+      "fileExtensions": ["ipynb"]
+    },
+    "just": {
+      "iconPath": "./icons/just.svg",
+      "fileNames": ["justfile"]
+    },
+    "karma": {
+      "iconPath": "./icons/karma.svg",
+      "fileNames": ["karma.conf.js"]
+    },
+    "kcl": {
+      "iconPath": "./icons/kcl.svg",
+      "fileExtensions": ["kcl"]
+    },
+    "key": {
+      "iconPath": "./icons/key.svg",
+      "fileExtensions": ["key", "pub"]
+    },
+    "keystatic": {
+      "iconPath": "./icons/keystatic.svg",
+      "fileNames": ["keystatic.config.js", "keystatic.config.ts"]
+    },
+    "kivy": {
+      "iconPath": "./icons/kivy.svg",
+      "fileExtensions": ["kv"]
+    },
+    "kl": {
+      "iconPath": "./icons/kl.svg"
+    },
+    "knip": {
+      "iconPath": "./icons/knip.svg",
+      "fileNames": ["knip.json", "knip.jsonc"]
+    },
+    "kotlin": {
+      "iconPath": "./icons/kotlin.svg",
+      "fileExtensions": ["kt", "kts"]
+    },
+    "kubernetes": {
+      "iconPath": "./icons/kubernetes.svg"
+    },
+    "kusto": {
+      "iconPath": "./icons/kusto.svg",
+      "fileExtensions": ["csl"]
+    },
+    "label": {
+      "iconPath": "./icons/label.svg"
+    },
+    "laravel": {
+      "iconPath": "./icons/laravel.svg"
+    },
+    "latexmk": {
+      "iconPath": "./icons/latexmk.svg",
+      "fileNames": ["latexmkrc"]
+    },
+    "lbx": {
+      "iconPath": "./icons/lbx.svg",
+      "fileExtensions": ["lbx"]
+    },
+    "lefthook": {
+      "iconPath": "./icons/lefthook.svg",
+      "fileNames": ["lefthook.yml"]
+    },
+    "lerna": {
+      "iconPath": "./icons/lerna.svg",
+      "fileNames": ["lerna.json"]
+    },
+    "less": {
+      "iconPath": "./icons/less.svg",
+      "fileExtensions": ["less"]
+    },
+    "liara": {
+      "iconPath": "./icons/liara.svg",
+      "fileNames": ["liara.json"]
+    },
+    "lib": {
+      "iconPath": "./icons/lib.svg",
+      "fileExtensions": ["lib"]
+    },
+    "lighthouse": {
+      "iconPath": "./icons/lighthouse.svg",
+      "fileNames": [".lighthouserc.js", ".lighthouserc.json"]
+    },
+    "lilypond": {
+      "iconPath": "./icons/lilypond.svg",
+      "fileExtensions": ["ly"]
+    },
+    "liquid": {
+      "iconPath": "./icons/liquid.svg",
+      "fileExtensions": ["liquid"]
+    },
+    "lisp": {
+      "iconPath": "./icons/lisp.svg",
+      "fileExtensions": ["lisp", "lsp", "cl"]
+    },
+    "livescript": {
+      "iconPath": "./icons/livescript.svg",
+      "fileExtensions": ["ls"]
+    },
+    "lock": {
+      "iconPath": "./icons/lock.svg",
+      "fileExtensions": ["lock"]
+    },
+    "log": {
+      "iconPath": "./icons/log.svg",
+      "fileExtensions": ["log"]
+    },
+    "lolcode": {
+      "iconPath": "./icons/lolcode.svg",
+      "fileExtensions": ["lol"]
+    },
+    "lottie": {
+      "iconPath": "./icons/lottie.svg",
+      "fileExtensions": ["lottie"]
+    },
+    "lua": {
+      "iconPath": "./icons/lua.svg",
+      "fileExtensions": ["lua"]
+    },
+    "luau": {
+      "iconPath": "./icons/luau.svg",
+      "fileExtensions": ["luau"]
+    },
+    "lyric": {
+      "iconPath": "./icons/lyric.svg",
+      "fileExtensions": ["lrc"]
+    },
+    "makefile": {
+      "iconPath": "./icons/makefile.svg",
+      "fileNames": ["makefile", "gnumakefile", "kbuild"]
+    },
+    "markdoc": {
+      "iconPath": "./icons/markdoc.svg",
+      "fileExtensions": ["markdoc"]
+    },
+    "markdown": {
+      "iconPath": "./icons/markdown.svg",
+      "fileExtensions": ["md", "markdown"]
+    },
+    "markdownlint": {
+      "iconPath": "./icons/markdownlint.svg",
+      "fileNames": [".markdownlint.json", ".markdownlint.yml"]
+    },
+    "markojs": {
+      "iconPath": "./icons/markojs.svg",
+      "fileExtensions": ["marko"]
+    },
+    "mathematica": {
+      "iconPath": "./icons/mathematica.svg",
+      "fileExtensions": ["nb"]
+    },
+    "matlab": {
+      "iconPath": "./icons/matlab.svg",
+      "fileExtensions": ["m"]
+    },
+    "maven": {
+      "iconPath": "./icons/maven.svg",
+      "fileNames": ["pom.xml"]
+    },
+    "mdsvex": {
+      "iconPath": "./icons/mdsvex.svg",
+      "fileExtensions": ["svx"]
+    },
+    "mdx": {
+      "iconPath": "./icons/mdx.svg",
+      "fileExtensions": ["mdx"]
+    },
+    "mercurial": {
+      "iconPath": "./icons/mercurial.svg",
+      "fileNames": [".hg"]
+    },
+    "merlin": {
+      "iconPath": "./icons/merlin.svg",
+      "fileNames": [".merlin"]
+    },
+    "mermaid": {
+      "iconPath": "./icons/mermaid.svg",
+      "fileExtensions": ["mermaid", "mmd"]
+    },
+    "meson": {
+      "iconPath": "./icons/meson.svg",
+      "fileNames": ["meson.build"]
+    },
+    "minecraft-fabric": {
+      "iconPath": "./icons/minecraft-fabric.svg"
+    },
+    "minecraft": {
+      "iconPath": "./icons/minecraft.svg"
+    },
+    "mint": {
+      "iconPath": "./icons/mint.svg",
+      "fileExtensions": ["mint"]
+    },
+    "mjml": {
+      "iconPath": "./icons/mjml.svg",
+      "fileExtensions": ["mjml"]
+    },
+    "mocha": {
+      "iconPath": "./icons/mocha.svg",
+      "fileNames": [".mocharc.js", ".mocharc.json", ".mocharc.yml"]
+    },
+    "modernizr": {
+      "iconPath": "./icons/modernizr.svg",
+      "fileNames": [".modernizrrc"]
+    },
+    "mojo": {
+      "iconPath": "./icons/mojo.svg",
+      "fileExtensions": ["mojo", "🔥"]
+    },
+    "moon": {
+      "iconPath": "./icons/moon.svg"
+    },
+    "moonscript": {
+      "iconPath": "./icons/moonscript.svg",
+      "fileExtensions": ["moon"]
+    },
+    "mxml": {
+      "iconPath": "./icons/mxml.svg",
+      "fileExtensions": ["mxml"]
+    },
+    "nano-staged": {
+      "iconPath": "./icons/nano-staged.svg",
+      "fileNames": [".nanostagedrc", "nanostaged.json"]
+    },
+    "ndst": {
+      "iconPath": "./icons/ndst.svg"
+    },
+    "nest": {
+      "iconPath": "./icons/nest.svg"
+    },
+    "netlify": {
+      "iconPath": "./icons/netlify.svg",
+      "fileNames": ["netlify.toml"]
+    },
+    "next": {
+      "iconPath": "./icons/next.svg",
+      "fileNames": ["next.config.js", "next.config.ts"]
+    },
+    "nginx": {
+      "iconPath": "./icons/nginx.svg",
+      "fileNames": ["nginx.conf"]
+    },
+    "ngrx-actions": {
+      "iconPath": "./icons/ngrx-actions.svg"
+    },
+    "ngrx-effects": {
+      "iconPath": "./icons/ngrx-effects.svg"
+    },
+    "ngrx-entity": {
+      "iconPath": "./icons/ngrx-entity.svg"
+    },
+    "ngrx-reducer": {
+      "iconPath": "./icons/ngrx-reducer.svg"
+    },
+    "ngrx-selectors": {
+      "iconPath": "./icons/ngrx-selectors.svg"
+    },
+    "ngrx-state": {
+      "iconPath": "./icons/ngrx-state.svg"
+    },
+    "nim": {
+      "iconPath": "./icons/nim.svg",
+      "fileExtensions": ["nim", "nims"]
+    },
+    "nix": {
+      "iconPath": "./icons/nix.svg",
+      "fileExtensions": ["nix"]
+    },
+    "nodejs_alt": {
+      "iconPath": "./icons/nodejs_alt.svg"
+    },
+    "nodejs": {
+      "iconPath": "./icons/nodejs.svg"
+    },
+    "nodemon": {
+      "iconPath": "./icons/nodemon.svg",
+      "fileNames": ["nodemon.json"]
+    },
+    "npm": {
+      "iconPath": "./icons/npm.svg",
+      "fileNames": [".npmrc", "package.json", "package-lock.json"]
+    },
+    "nuget": {
+      "iconPath": "./icons/nuget.svg",
+      "fileNames": ["packages.config"]
+    },
+    "nunjucks": {
+      "iconPath": "./icons/nunjucks.svg",
+      "fileExtensions": ["nunjucks", "njk"]
+    },
+    "nuxt": {
+      "iconPath": "./icons/nuxt.svg",
+      "fileNames": ["nuxt.config.js", "nuxt.config.ts"]
+    },
+    "nx": {
+      "iconPath": "./icons/nx.svg",
+      "fileNames": ["nx.json"]
+    },
+    "objective-c": {
+      "iconPath": "./icons/objective-c.svg",
+      "fileExtensions": ["m"]
+    },
+    "objective-cpp": {
+      "iconPath": "./icons/objective-cpp.svg",
+      "fileExtensions": ["mm"]
+    },
+    "ocaml": {
+      "iconPath": "./icons/ocaml.svg",
+      "fileExtensions": ["ml", "mli"]
+    },
+    "odin": {
+      "iconPath": "./icons/odin.svg",
+      "fileExtensions": ["odin"]
+    },
+    "opa": {
+      "iconPath": "./icons/opa.svg"
+    },
+    "opam": {
+      "iconPath": "./icons/opam.svg"
+    },
+    "openapi": {
+      "iconPath": "./icons/openapi.svg",
+      "fileExtensions": ["openapi.yml", "openapi.json"]
+    },
+    "osu": {
+      "iconPath": "./icons/osu.svg",
+      "fileExtensions": ["osu", "osk", "osr", "osb"]
+    },
+    "otne": {
+      "iconPath": "./icons/otne.svg"
+    },
+    "oxlint": {
+      "iconPath": "./icons/oxlint.svg"
+    },
+    "packship": {
+      "iconPath": "./icons/packship.svg"
+    },
+    "palette": {
+      "iconPath": "./icons/palette.svg"
+    },
+    "panda": {
+      "iconPath": "./icons/panda.svg"
+    },
+    "parcel": {
+      "iconPath": "./icons/parcel.svg",
+      "fileNames": [".parcelrc"]
+    },
+    "pascal": {
+      "iconPath": "./icons/pascal.svg",
+      "fileExtensions": ["pas", "p"]
+    },
+    "pawn": {
+      "iconPath": "./icons/pawn.svg",
+      "fileExtensions": ["pwn", "inc"]
+    },
+    "payload": {
+      "iconPath": "./icons/payload.svg"
+    },
+    "pdf": {
+      "iconPath": "./icons/pdf.svg",
+      "fileExtensions": ["pdf"]
+    },
+    "pdm": {
+      "iconPath": "./icons/pdm.svg",
+      "fileNames": ["pdm.lock", "pyproject.toml"]
+    },
+    "percy": {
+      "iconPath": "./icons/percy.svg",
+      "fileNames": [".percy.yml"]
+    },
+    "perl": {
+      "iconPath": "./icons/perl.svg",
+      "fileExtensions": ["pl", "pm"]
+    },
+    "php_elephant_pink": {
+      "iconPath": "./icons/php_elephant_pink.svg"
+    },
+    "php_elephant": {
+      "iconPath": "./icons/php_elephant.svg"
+    },
+    "php-cs-fixer": {
+      "iconPath": "./icons/php-cs-fixer.svg",
+      "fileNames": [".php_cs", ".php_cs.dist"]
+    },
+    "php": {
+      "iconPath": "./icons/php.svg",
+      "fileExtensions": ["php"]
+    },
+    "phpstan": {
+      "iconPath": "./icons/phpstan.svg",
+      "fileNames": ["phpstan.neon"]
+    },
+    "phpunit": {
+      "iconPath": "./icons/phpunit.svg",
+      "fileNames": ["phpunit.xml", "phpunit.xml.dist"]
+    },
+    "pinejs": {
+      "iconPath": "./icons/pinejs.svg"
+    },
+    "pipeline": {
+      "iconPath": "./icons/pipeline.svg"
+    },
+    "pkl": {
+      "iconPath": "./icons/pkl.svg",
+      "fileExtensions": ["pkl"]
+    },
+    "plastic": {
+      "iconPath": "./icons/plastic.svg"
+    },
+    "playwright": {
+      "iconPath": "./icons/playwright.svg",
+      "fileNames": ["playwright.config.js", "playwright.config.ts"]
+    },
+    "plop": {
+      "iconPath": "./icons/plop.svg",
+      "fileNames": ["plopfile.js"]
+    },
+    "pm2-ecosystem": {
+      "iconPath": "./icons/pm2-ecosystem.svg"
+    },
+    "pnpm": {
+      "iconPath": "./icons/pnpm.svg",
+      "fileNames": ["pnpm-lock.yaml", "pnpm-workspace.yaml"]
+    },
+    "poetry": {
+      "iconPath": "./icons/poetry.svg",
+      "fileNames": ["poetry.lock"]
+    },
+    "postcss": {
+      "iconPath": "./icons/postcss.svg",
+      "fileNames": ["postcss.config.js"]
+    },
+    "posthtml": {
+      "iconPath": "./icons/posthtml.svg",
+      "fileNames": [".posthtmlrc.js", ".posthtmlrc.json"]
+    },
+    "powerpoint": {
+      "iconPath": "./icons/powerpoint.svg",
+      "fileExtensions": ["ppt", "pptx"]
+    },
+    "powershell": {
+      "iconPath": "./icons/powershell.svg",
+      "fileExtensions": ["ps1", "psm1", "psd1"]
+    },
+    "pre-commit": {
+      "iconPath": "./icons/pre-commit.svg",
+      "fileNames": [".pre-commit-config.yaml"]
+    },
+    "prettier": {
+      "iconPath": "./icons/prettier.svg",
+      "fileNames": [
+        ".prettierrc",
+        ".prettierrc.js",
+        ".prettierrc.json",
+        ".prettierrc.yml",
+        "prettier.config.js"
+      ]
+    },
+    "prisma": {
+      "iconPath": "./icons/prisma.svg",
+      "fileExtensions": ["prisma"]
+    },
+    "processing": {
+      "iconPath": "./icons/processing.svg",
+      "fileExtensions": ["pde"]
+    },
+    "prolog": {
+      "iconPath": "./icons/prolog.svg",
+      "fileExtensions": ["pro", "pl"]
+    },
+    "prompt": {
+      "iconPath": "./icons/prompt.svg"
+    },
+    "proto": {
+      "iconPath": "./icons/proto.svg",
+      "fileExtensions": ["proto"]
+    },
+    "protractor": {
+      "iconPath": "./icons/protractor.svg",
+      "fileNames": ["protractor.conf.js"]
+    },
+    "pug": {
+      "iconPath": "./icons/pug.svg",
+      "fileExtensions": ["pug", "jade"]
+    },
+    "puppet": {
+      "iconPath": "./icons/puppet.svg",
+      "fileExtensions": ["pp"]
+    },
+    "puppeteer": {
+      "iconPath": "./icons/puppeteer.svg",
+      "fileNames": [".puppeteerrc.js", ".puppeteerrc.json"]
+    },
+    "purescript": {
+      "iconPath": "./icons/purescript.svg",
+      "fileExtensions": ["purs"]
+    },
+    "python-misc": {
+      "iconPath": "./icons/python-misc.svg"
+    },
+    "python": {
+      "iconPath": "./icons/python.svg",
+      "fileExtensions": ["py"]
+    },
+    "pytorch": {
+      "iconPath": "./icons/pytorch.svg"
+    },
+    "qsharp": {
+      "iconPath": "./icons/qsharp.svg",
+      "fileExtensions": ["qs"]
+    },
+    "quasar": {
+      "iconPath": "./icons/quasar.svg",
+      "fileNames": ["quasar.conf.js"]
+    },
+    "quokka": {
+      "iconPath": "./icons/quokka.svg"
+    },
+    "qwik": {
+      "iconPath": "./icons/qwik.svg"
+    },
+    "r": {
+      "iconPath": "./icons/r.svg",
+      "fileExtensions": ["r"]
+    },
+    "racket": {
+      "iconPath": "./icons/racket.svg",
+      "fileExtensions": ["rkt"]
+    },
+    "raml": {
+      "iconPath": "./icons/raml.svg",
+      "fileExtensions": ["raml"]
+    },
+    "razor": {
+      "iconPath": "./icons/razor.svg",
+      "fileExtensions": ["cshtml"]
+    },
+    "rbxmk": {
+      "iconPath": "./icons/rbxmk.svg"
+    },
+    "rc": {
+      "iconPath": "./icons/rc.svg"
+    },
+    "react_ts": {
+      "iconPath": "./icons/react_ts.svg",
+      "fileExtensions": ["tsx"]
+    },
+    "react": {
+      "iconPath": "./icons/react.svg",
+      "fileExtensions": ["jsx"]
+    },
+    "readme": {
+      "iconPath": "./icons/readme.svg",
+      "fileNames": ["readme.md", "readme.txt", "readme"]
+    },
+    "reason": {
+      "iconPath": "./icons/reason.svg",
+      "fileExtensions": ["re", "rei"]
+    },
+    "red": {
+      "iconPath": "./icons/red.svg",
+      "fileExtensions": ["red"]
+    },
+    "redux-action": {
+      "iconPath": "./icons/redux-action.svg"
+    },
+    "redux-reducer": {
+      "iconPath": "./icons/redux-reducer.svg"
+    },
+    "redux-selector": {
+      "iconPath": "./icons/redux-selector.svg"
+    },
+    "redux-store": {
+      "iconPath": "./icons/redux-store.svg"
+    },
+    "regedit": {
+      "iconPath": "./icons/regedit.svg",
+      "fileExtensions": ["reg"]
+    },
+    "remark": {
+      "iconPath": "./icons/remark.svg",
+      "fileNames": [".remarkrc", ".remarkrc.js", ".remarkrc.json"]
+    },
+    "remix": {
+      "iconPath": "./icons/remix.svg",
+      "fileNames": ["remix.config.js", "remix.config.ts"]
+    },
+    "renovate": {
+      "iconPath": "./icons/renovate.svg",
+      "fileNames": ["renovate.json", ".renovaterc"]
+    },
+    "replit": {
+      "iconPath": "./icons/replit.svg",
+      "fileNames": [".replit"]
+    },
+    "rescript-interface": {
+      "iconPath": "./icons/rescript-interface.svg"
+    },
+    "rescript": {
+      "iconPath": "./icons/rescript.svg",
+      "fileExtensions": ["res", "resi"]
+    },
+    "restql": {
+      "iconPath": "./icons/restql.svg"
+    },
+    "riot": {
+      "iconPath": "./icons/riot.svg",
+      "fileExtensions": ["riot"]
+    },
+    "roadmap": {
+      "iconPath": "./icons/roadmap.svg",
+      "fileNames": ["roadmap.md", "roadmap.txt"]
+    },
+    "roblox": {
+      "iconPath": "./icons/roblox.svg"
+    },
+    "robot": {
+      "iconPath": "./icons/robot.svg",
+      "fileExtensions": ["robot"]
+    },
+    "robots": {
+      "iconPath": "./icons/robots.svg",
+      "fileNames": ["robots.txt"]
+    },
+    "rocket": {
+      "iconPath": "./icons/rocket.svg"
+    },
+    "rojo": {
+      "iconPath": "./icons/rojo.svg",
+      "fileNames": ["rojo.json"]
+    },
+    "rollup": {
+      "iconPath": "./icons/rollup.svg",
+      "fileNames": ["rollup.config.js", "rollup.config.ts"]
+    },
+    "rome": {
+      "iconPath": "./icons/rome.svg",
+      "fileNames": ["rome.json"]
+    },
+    "routing": {
+      "iconPath": "./icons/routing.svg"
+    },
+    "rspec": {
+      "iconPath": "./icons/rspec.svg",
+      "fileNames": [".rspec"]
+    },
+    "rubocop": {
+      "iconPath": "./icons/rubocop.svg",
+      "fileNames": [".rubocop.yml"]
+    },
+    "ruby": {
+      "iconPath": "./icons/ruby.svg",
+      "fileExtensions": ["rb"]
+    },
+    "ruff": {
+      "iconPath": "./icons/ruff.svg",
+      "fileNames": ["ruff.toml", ".ruff.toml"]
+    },
+    "rust": {
+      "iconPath": "./icons/rust.svg",
+      "fileExtensions": ["rs"]
+    },
+    "salesforce": {
+      "iconPath": "./icons/salesforce.svg"
+    },
+    "san": {
+      "iconPath": "./icons/san.svg",
+      "fileExtensions": ["san"]
+    },
+    "sas": {
+      "iconPath": "./icons/sas.svg",
+      "fileExtensions": ["sas"]
+    },
+    "sass": {
+      "iconPath": "./icons/sass.svg",
+      "fileExtensions": ["sass", "scss"]
+    },
+    "sbt": {
+      "iconPath": "./icons/sbt.svg",
+      "fileExtensions": ["sbt"]
+    },
+    "scala": {
+      "iconPath": "./icons/scala.svg",
+      "fileExtensions": ["scala"]
+    },
+    "scheme": {
+      "iconPath": "./icons/scheme.svg",
+      "fileExtensions": ["ss", "scm"]
+    },
+    "scons": {
+      "iconPath": "./icons/scons.svg",
+      "fileNames": ["sconstruct", "sconscript"]
+    },
+    "screwdriver": {
+      "iconPath": "./icons/screwdriver.svg",
+      "fileNames": ["screwdriver.yaml"]
+    },
+    "search": {
+      "iconPath": "./icons/search.svg"
+    },
+    "semantic-release": {
+      "iconPath": "./icons/semantic-release.svg",
+      "fileNames": [".releaserc", "release.config.js"]
+    },
+    "semgrep": {
+      "iconPath": "./icons/semgrep.svg"
+    },
+    "sentry": {
+      "iconPath": "./icons/sentry.svg",
+      "fileNames": [".sentryclirc"]
+    },
+    "sequelize": {
+      "iconPath": "./icons/sequelize.svg",
+      "fileNames": [".sequelizerc"]
+    },
+    "serverless": {
+      "iconPath": "./icons/serverless.svg",
+      "fileNames": ["serverless.yml"]
+    },
+    "settings": {
+      "iconPath": "./icons/settings.svg"
+    },
+    "shader": {
+      "iconPath": "./icons/shader.svg",
+      "fileExtensions": ["shader", "glsl", "hlsl"]
+    },
+    "silverstripe": {
+      "iconPath": "./icons/silverstripe.svg"
+    },
+    "simulink": {
+      "iconPath": "./icons/simulink.svg",
+      "fileExtensions": ["slx", "mdl"]
+    },
+    "siyuan": {
+      "iconPath": "./icons/siyuan.svg"
+    },
+    "sketch": {
+      "iconPath": "./icons/sketch.svg",
+      "fileExtensions": ["sketch"]
+    },
+    "slim": {
+      "iconPath": "./icons/slim.svg",
+      "fileExtensions": ["slim"]
+    },
+    "slint": {
+      "iconPath": "./icons/slint.svg",
+      "fileExtensions": ["slint"]
+    },
+    "slug": {
+      "iconPath": "./icons/slug.svg"
+    },
+    "smarty": {
+      "iconPath": "./icons/smarty.svg",
+      "fileExtensions": ["tpl"]
+    },
+    "sml": {
+      "iconPath": "./icons/sml.svg",
+      "fileExtensions": ["sml"]
+    },
+    "snakemake": {
+      "iconPath": "./icons/snakemake.svg",
+      "fileNames": ["snakefile"]
+    },
+    "snapcraft": {
+      "iconPath": "./icons/snapcraft.svg",
+      "fileNames": ["snapcraft.yaml"]
+    },
+    "snowpack": {
+      "iconPath": "./icons/snowpack.svg",
+      "fileNames": ["snowpack.config.js", "snowpack.config.ts"]
+    },
+    "snyk": {
+      "iconPath": "./icons/snyk.svg",
+      "fileNames": [".snyk"]
+    },
+    "solidity": {
+      "iconPath": "./icons/solidity.svg",
+      "fileExtensions": ["sol"]
+    },
+    "sonarcloud": {
+      "iconPath": "./icons/sonarcloud.svg"
+    },
+    "spwn": {
+      "iconPath": "./icons/spwn.svg",
+      "fileExtensions": ["spwn"]
+    },
+    "stackblitz": {
+      "iconPath": "./icons/stackblitz.svg"
+    },
+    "stan": {
+      "iconPath": "./icons/stan.svg",
+      "fileExtensions": ["stan"]
+    },
+    "steadybit": {
+      "iconPath": "./icons/steadybit.svg"
+    },
+    "stencil": {
+      "iconPath": "./icons/stencil.svg",
+      "fileNames": ["stencil.config.js", "stencil.config.ts"]
+    },
+    "stitches": {
+      "iconPath": "./icons/stitches.svg"
+    },
+    "storybook": {
+      "iconPath": "./icons/storybook.svg",
+      "fileExtensions": [
+        "stories.js",
+        "stories.jsx",
+        "stories.ts",
+        "stories.tsx"
+      ]
+    },
+    "stryker": {
+      "iconPath": "./icons/stryker.svg",
+      "fileNames": ["stryker.conf.js", "stryker.conf.json"]
+    },
+    "stylable": {
+      "iconPath": "./icons/stylable.svg"
+    },
+    "stylelint": {
+      "iconPath": "./icons/stylelint.svg",
+      "fileNames": [
+        ".stylelintrc",
+        ".stylelintrc.js",
+        ".stylelintrc.json",
+        ".stylelintrc.yml"
+      ]
+    },
+    "stylus": {
+      "iconPath": "./icons/stylus.svg",
+      "fileExtensions": ["styl"]
+    },
+    "sublime": {
+      "iconPath": "./icons/sublime.svg"
+    },
+    "subtitles": {
+      "iconPath": "./icons/subtitles.svg",
+      "fileExtensions": ["srt", "sub"]
+    },
+    "supabase": {
+      "iconPath": "./icons/supabase.svg"
+    },
+    "svelte": {
+      "iconPath": "./icons/svelte.svg",
+      "fileExtensions": ["svelte"]
+    },
+    "svg": {
+      "iconPath": "./icons/svg.svg",
+      "fileExtensions": ["svg"]
+    },
+    "svgo": {
+      "iconPath": "./icons/svgo.svg",
+      "fileNames": ["svgo.config.js"]
+    },
+    "svgr": {
+      "iconPath": "./icons/svgr.svg",
+      "fileNames": [".svgrrc"]
+    },
+    "swagger": {
+      "iconPath": "./icons/swagger.svg",
+      "fileExtensions": ["swagger.json", "swagger.yml"]
+    },
+    "sway": {
+      "iconPath": "./icons/sway.svg",
+      "fileExtensions": ["sw"]
+    },
+    "swc": {
+      "iconPath": "./icons/swc.svg",
+      "fileNames": [".swcrc"]
+    },
+    "swift": {
+      "iconPath": "./icons/swift.svg",
+      "fileExtensions": ["swift"]
+    },
+    "syncpack": {
+      "iconPath": "./icons/syncpack.svg"
+    },
+    "systemd": {
+      "iconPath": "./icons/systemd.svg",
+      "fileExtensions": ["service", "socket", "timer"]
+    },
+    "table": {
+      "iconPath": "./icons/table.svg"
+    },
+    "tailwindcss": {
+      "iconPath": "./icons/tailwindcss.svg",
+      "fileNames": ["tailwind.config.js", "tailwind.config.ts"]
+    },
+    "taskfile": {
+      "iconPath": "./icons/taskfile.svg"
+    },
+    "tauri": {
+      "iconPath": "./icons/tauri.svg",
+      "fileNames": ["tauri.conf.json"]
+    },
+    "taze": {
+      "iconPath": "./icons/taze.svg"
+    },
+    "tcl": {
+      "iconPath": "./icons/tcl.svg",
+      "fileExtensions": ["tcl"]
+    },
+    "teal": {
+      "iconPath": "./icons/teal.svg",
+      "fileExtensions": ["tl"]
+    },
+    "templ": {
+      "iconPath": "./icons/templ.svg"
+    },
+    "template": {
+      "iconPath": "./icons/template.svg"
+    },
+    "terraform": {
+      "iconPath": "./icons/terraform.svg",
+      "fileExtensions": ["tf", "tfvars"]
+    },
+    "tex": {
+      "iconPath": "./icons/tex.svg",
+      "fileExtensions": ["tex", "sty", "cls"]
+    },
+    "textlint": {
+      "iconPath": "./icons/textlint.svg",
+      "fileNames": [".textlintrc"]
+    },
+    "tilt": {
+      "iconPath": "./icons/tilt.svg",
+      "fileNames": ["tiltfile"]
+    },
+    "tldraw": {
+      "iconPath": "./icons/tldraw.svg"
+    },
+    "tobi": {
+      "iconPath": "./icons/tobi.svg"
+    },
+    "tobimake": {
+      "iconPath": "./icons/tobimake.svg"
+    },
+    "todo": {
+      "iconPath": "./icons/todo.svg",
+      "fileNames": ["todo.md", "todo.txt"]
+    },
+    "toml": {
+      "iconPath": "./icons/toml.svg",
+      "fileExtensions": ["toml"]
+    },
+    "travis": {
+      "iconPath": "./icons/travis.svg",
+      "fileNames": [".travis.yml"]
+    },
+    "tree": {
+      "iconPath": "./icons/tree.svg"
+    },
+    "trigger": {
+      "iconPath": "./icons/trigger.svg"
+    },
+    "tsconfig": {
+      "iconPath": "./icons/tsconfig.svg",
+      "fileNames": ["tsconfig.json"]
+    },
+    "tsdoc": {
+      "iconPath": "./icons/tsdoc.svg"
+    },
+    "tsil": {
+      "iconPath": "./icons/tsil.svg"
+    },
+    "tune": {
+      "iconPath": "./icons/tune.svg"
+    },
+    "turborepo": {
+      "iconPath": "./icons/turborepo.svg",
+      "fileNames": ["turbo.json"]
+    },
+    "twig": {
+      "iconPath": "./icons/twig.svg",
+      "fileExtensions": ["twig"]
+    },
+    "twine": {
+      "iconPath": "./icons/twine.svg",
+      "fileNames": [".twine.rc"]
+    },
+    "typescript-def": {
+      "iconPath": "./icons/typescript-def.svg",
+      "fileExtensions": ["d.ts"]
+    },
+    "typescript": {
+      "iconPath": "./icons/typescript.svg",
+      "fileExtensions": ["ts"]
+    },
+    "typst": {
+      "iconPath": "./icons/typst.svg",
+      "fileExtensions": ["typ"]
+    },
+    "umi": {
+      "iconPath": "./icons/umi.svg"
+    },
+    "uml": {
+      "iconPath": "./icons/uml.svg"
+    },
+    "unity": {
+      "iconPath": "./icons/unity.svg"
+    },
+    "unocss": {
+      "iconPath": "./icons/unocss.svg",
+      "fileNames": ["unocss.config.js", "unocss.config.ts"]
+    },
+    "url": {
+      "iconPath": "./icons/url.svg",
+      "fileExtensions": ["url"]
+    },
+    "uv": {
+      "iconPath": "./icons/uv.svg"
+    },
+    "vagrant": {
+      "iconPath": "./icons/vagrant.svg",
+      "fileNames": ["vagrantfile"]
+    },
+    "vala": {
+      "iconPath": "./icons/vala.svg",
+      "fileExtensions": ["vala"]
+    },
+    "vanilla-extract": {
+      "iconPath": "./icons/vanilla-extract.svg"
+    },
+    "varnish": {
+      "iconPath": "./icons/varnish.svg",
+      "fileExtensions": ["vcl"]
+    },
+    "vedic": {
+      "iconPath": "./icons/vedic.svg"
+    },
+    "velite": {
+      "iconPath": "./icons/velite.svg"
+    },
+    "velocity": {
+      "iconPath": "./icons/velocity.svg"
+    },
+    "vercel": {
+      "iconPath": "./icons/vercel.svg",
+      "fileNames": ["vercel.json", ".vercelignore"]
+    },
+    "verdaccio": {
+      "iconPath": "./icons/verdaccio.svg",
+      "fileNames": ["verdaccio.yml"]
+    },
+    "verified": {
+      "iconPath": "./icons/verified.svg"
+    },
+    "verilog": {
+      "iconPath": "./icons/verilog.svg",
+      "fileExtensions": ["v"]
+    },
+    "vfl": {
+      "iconPath": "./icons/vfl.svg",
+      "fileExtensions": ["vfl"]
+    },
+    "video": {
+      "iconPath": "./icons/video.svg",
+      "fileExtensions": ["mp4", "webm", "ogg", "mov"]
+    },
+    "vim": {
+      "iconPath": "./icons/vim.svg",
+      "fileExtensions": ["vim", "vimrc"]
+    },
+    "virtual": {
+      "iconPath": "./icons/virtual.svg"
+    },
+    "visualstudio": {
+      "iconPath": "./icons/visualstudio.svg",
+      "fileExtensions": ["sln", "csproj", "vbproj"]
+    },
+    "vite": {
+      "iconPath": "./icons/vite.svg",
+      "fileNames": ["vite.config.js", "vite.config.ts"]
+    },
+    "vitest": {
+      "iconPath": "./icons/vitest.svg",
+      "fileNames": ["vitest.config.js", "vitest.config.ts"]
+    },
+    "vlang": {
+      "iconPath": "./icons/vlang.svg",
+      "fileExtensions": ["v"]
+    },
+    "vscode": {
+      "iconPath": "./icons/vscode.svg"
+    },
+    "vue-config": {
+      "iconPath": "./icons/vue-config.svg",
+      "fileNames": ["vue.config.js"]
+    },
+    "vue": {
+      "iconPath": "./icons/vue.svg",
+      "fileExtensions": ["vue"]
+    },
+    "vuex-store": {
+      "iconPath": "./icons/vuex-store.svg"
+    },
+    "wakatime": {
+      "iconPath": "./icons/wakatime.svg",
+      "fileNames": [".wakatime-project"]
+    },
+    "wallaby": {
+      "iconPath": "./icons/wallaby.svg",
+      "fileNames": ["wallaby.js", "wallaby.json"]
+    },
+    "wally": {
+      "iconPath": "./icons/wally.svg",
+      "fileNames": ["wally.toml"]
+    },
+    "watchman": {
+      "iconPath": "./icons/watchman.svg",
+      "fileNames": [".watchmanconfig"]
+    },
+    "webassembly": {
+      "iconPath": "./icons/webassembly.svg",
+      "fileExtensions": ["wasm", "wat"]
+    },
+    "webhint": {
+      "iconPath": "./icons/webhint.svg",
+      "fileNames": [".hintrc"]
+    },
+    "webpack": {
+      "iconPath": "./icons/webpack.svg",
+      "fileNames": ["webpack.config.js", "webpack.config.ts"]
+    },
+    "wepy": {
+      "iconPath": "./icons/wepy.svg"
+    },
+    "werf": {
+      "iconPath": "./icons/werf.svg",
+      "fileNames": ["werf.yaml"]
+    },
+    "windicss": {
+      "iconPath": "./icons/windicss.svg",
+      "fileNames": ["windi.config.js", "windi.config.ts"]
+    },
+    "wolframlanguage": {
+      "iconPath": "./icons/wolframlanguage.svg",
+      "fileExtensions": ["wl"]
+    },
+    "word": {
+      "iconPath": "./icons/word.svg",
+      "fileExtensions": ["doc", "docx"]
+    },
+    "wrangler": {
+      "iconPath": "./icons/wrangler.svg",
+      "fileNames": ["wrangler.toml"]
+    },
+    "wxt": {
+      "iconPath": "./icons/wxt.svg"
+    },
+    "xaml": {
+      "iconPath": "./icons/xaml.svg",
+      "fileExtensions": ["xaml"]
+    },
+    "xmake": {
+      "iconPath": "./icons/xmake.svg",
+      "fileNames": ["xmake.lua"]
+    },
+    "xml": {
+      "iconPath": "./icons/xml.svg",
+      "fileExtensions": ["xml"]
+    },
+    "yaml": {
+      "iconPath": "./icons/yaml.svg",
+      "fileExtensions": ["yml", "yaml"]
+    },
+    "yang": {
+      "iconPath": "./icons/yang.svg",
+      "fileExtensions": ["yang"]
+    },
+    "yarn": {
+      "iconPath": "./icons/yarn.svg",
+      "fileNames": [".yarnrc", "yarn.lock"]
+    },
+    "zeabur": {
+      "iconPath": "./icons/zeabur.svg"
+    },
+    "zig": {
+      "iconPath": "./icons/zig.svg",
+      "fileExtensions": ["zig"]
+    },
+    "zip": {
+      "iconPath": "./icons/zip.svg",
+      "fileExtensions": ["zip", "rar", "7z", "tar", "gz"]
+    }
+  }
+}
