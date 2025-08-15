@@ -1224,7 +1224,7 @@
     },
     "osu": {
       "iconPath": "./icons/osu.svg",
-      "fileExtensions": ["osu", "osk", "osr", "osb"]
+      "fileExtensions": ["osu", "osk", "osr", "osb", "osz"]
     },
     "otne": {
       "iconPath": "./icons/otne.svg"
