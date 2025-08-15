@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const SearchBar = ({ files, setFilteredFiles, setIsUploading }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -12,7 +12,7 @@ const SearchBar = ({ files, setFilteredFiles, setIsUploading }) => {
         file.fileName.toLowerCase().includes(query) ||
         file.fileSize.toString().toLowerCase().includes(query) ||
         file.fileType.toLowerCase().includes(query) ||
-        file.uploadedAt.toLowerCase().includes(query) 
+        file.uploadedAt.toLowerCase().includes(query)
       );
     });
 
@@ -20,7 +20,7 @@ const SearchBar = ({ files, setFilteredFiles, setIsUploading }) => {
   };
 
   return (
-    <div className="flex items-center justify-between bg-gray-700 text-gray-100 rounded-xl shadow-md p-4 mx-auto my-4 sm:w-[85%] w-[75%]">
+    <div className="flex items-center justify-between bg-gray-700 text-gray-100 rounded-xl shadow-md p-4 mx-auto my-4 sm:w-[85%] w-[95%]">
       <input
         type="text"
         placeholder="Search files..."
@@ -30,7 +30,7 @@ const SearchBar = ({ files, setFilteredFiles, setIsUploading }) => {
       />
       <button
         onClick={() => setIsUploading((prevState) => !prevState)}
-        className="bg-gray-600 text-white w-12 h-12 flex items-center justify-center rounded-full ml-2 hover:bg-gray-500 transition duration-300 ease-in-out"
+        className="bg-gray-600 text-white w-12 h-12 flex items-center justify-center rounded-full ml-2 hover:bg-gray-500 transition duration-300 ease-in-out flex-shrink-0" // Added flex-shrink-0
         aria-label="Upload Files"
       >
         <svg
