@@ -13,14 +13,36 @@ const formatFileSize = (bytes) => {
 const FileCard = ({ file, onDelete, onDownload }) => {
   const [loading, setLoading] = useState(false);
 
-  const handleDownload = () => {
+  const handleDownload = async () => {
     setLoading(true);
-    onDownload(file.fileId).finally(() => setLoading(false));
+    try {
+      const url = await onDownload(file.fileId);
+      if (!url) {
+        throw new Error("Download URL could not be retrieved.");
+      }
+      
+      const link = document.createElement('a');
+      link.href = url;
+      
+      link.setAttribute('download', file.fileName);
+      
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+
+    } catch (error) {
+      console.error("Download failed:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleDelete = () => {
     setLoading(true);
-    onDelete(file.fileId).finally(() => setLoading(false));
+    onDelete(file.fileId).finally(() => {
+      setLoading(false);
+      window.location.reload();
+    });
   };
 
   return (
