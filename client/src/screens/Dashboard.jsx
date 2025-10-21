@@ -106,7 +106,7 @@ const Dashboard = () => {
         setIsUploading(false);
         // small delay to allow server writes to become consistent
         await new Promise((r) => setTimeout(r, 300));
-        const resp = await fetch(`http://localhost:3000/files?username=${username}`, { method: 'GET' });
+        const resp = await fetch(`https://api.filecloud.azaken.com/files?username=${username}`, { method: 'GET' });
         const data = await resp.json();
         if (Array.isArray(data)) {
           // replace full lists with authoritative server state (canonicalized)
@@ -202,7 +202,7 @@ const Dashboard = () => {
       }
 
       try {
-        const response = await fetch(`http://localhost:3000/files?username=${username}`, { 
+        const response = await fetch(`https://api.filecloud.azaken.com/files?username=${username}`, { 
           method: "GET",
         });
 
@@ -265,7 +265,7 @@ const Dashboard = () => {
       const confirmation = window.confirm("Are you sure you want to delete this file?");
       if (!confirmation) return;
 
-      const response = await fetch(`http://localhost:3000/files/${fileId}`, {
+      const response = await fetch(`https://api.filecloud.azaken.com/files/${fileId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -309,7 +309,7 @@ const Dashboard = () => {
   // Called by FolderCard which already asks for confirmation in its UI
   const handleDeleteFolder = async (fileId) => {
     try {
-      const response = await fetch(`http://localhost:3000/files/${fileId}`, {
+      const response = await fetch(`https://api.filecloud.azaken.com/files/${fileId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
