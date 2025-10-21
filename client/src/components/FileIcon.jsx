@@ -1,39 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { iconMap } from '../utils/iconMap';
-import { FaFileAlt } from 'react-icons/fa';
+import { FaFileAlt, FaFolder } from 'react-icons/fa';
 
-const FileIcon = ({ fileName }) => {
+const FileIcon = ({ fileName, isFolder = false, size = 48 }) => {
   const [Icon, setIcon] = useState(null);
 
   useEffect(() => {
+    let mounted = true;
     const getIcon = async () => {
       const lowerFileName = fileName?.toLowerCase() || '';
       const extension = lowerFileName.split('.').pop();
-      
-      const iconName = iconMap.get(lowerFileName) || iconMap.get(extension) || 'default';
+      const mapped = iconMap.get(lowerFileName) || iconMap.get(extension);
+      const iconName = mapped || (isFolder ? 'folder-app' : 'default');
 
       try {
         const iconModule = await import(`../assets/icons/${iconName}.svg`);
-        setIcon(iconModule.default);
+        if (mounted) setIcon(iconModule.default);
       } catch (error) {
-        setIcon(() => FaFileAlt);
+        if (mounted) setIcon(() => null);
       }
     };
 
     getIcon();
-  }, [fileName]);
+    return () => { mounted = false; };
+  }, [fileName, isFolder]);
+
+  const px = typeof size === 'number' ? `${size}px` : size;
+  const className = `inline-block`;
 
   if (!Icon) {
-    return <div className="w-14 h-14 animate-pulse bg-gray-600 rounded"></div>;
+    return isFolder ? (
+      <FaFolder className={className} style={{ width: px, height: px }} />
+    ) : (
+      <FaFileAlt className={className} style={{ width: px, height: px }} />
+    );
   }
-  
-  const isSvgPath = typeof Icon === 'string';
 
-  return isSvgPath ? (
-    <img src={Icon} alt={`${fileName} icon`} className="w-14 h-14" />
-  ) : (
-    <Icon className="w-12 h-12 text-gray-400" />
-  );
+  return <img src={Icon} alt={`${fileName} icon`} style={{ width: px, height: px }} className={className} />;
 };
 
 export default FileIcon;
