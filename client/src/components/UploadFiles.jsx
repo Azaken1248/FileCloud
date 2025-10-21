@@ -4,7 +4,6 @@ import FileIcon from "./FileIcon";
 
 
 const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
-  const API_BASE = "https://api.filecloud.azaken.com"
   const [files, setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
@@ -62,7 +61,7 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
     setCreatingFolder(true);
     const username = localStorage.getItem("username");
     try {
-  const response = await fetch(`${API_BASE}/folders`, {
+  const response = await fetch(`https://api.filecloud.azaken.com/folders`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, folderName: newFolderName, parentId: currentFolderId }),
@@ -108,7 +107,7 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
         if (currentFolderId) formData.append("parentId", currentFolderId);
 
         const xhr = new XMLHttpRequest();
-        xhr.open("POST", `${API_BASE}/upload`);
+        xhr.open("POST", `https://api.filecloud.azaken.com/upload`);
         const token = localStorage.getItem("token");
         if (token) xhr.setRequestHeader("Authorization", `Bearer ${token}`);
 
@@ -173,7 +172,7 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
 
       let created;
       try {
-        const response = await fetch(`${API_BASE}/folders`, {
+        const response = await fetch(`https://api.filecloud.azaken.com/folders`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username, folderName: folderEntry.folderName, parentId: currentFolderId }),
@@ -203,7 +202,7 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
           formData.append('parentId', created.fileId);
 
           const xhr = new XMLHttpRequest();
-          xhr.open('POST', `${API_BASE}/upload`);
+          xhr.open('POST', `https://api.filecloud.azaken.com/upload`);
           const token = localStorage.getItem('token');
           if (token) xhr.setRequestHeader('Authorization', `Bearer ${token}`);
 

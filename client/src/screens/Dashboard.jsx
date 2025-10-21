@@ -7,7 +7,6 @@ import FolderCard from "../components/FolderCard";
 import SearchBar from "../components/SearchBar";
 import UploadFiles from "../components/UploadFiles";
 import Loader from "../components/Loader";
-import { API_BASE } from "../config";
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
