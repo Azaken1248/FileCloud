@@ -1,10 +1,10 @@
 import { useState, useRef } from "react";
 import { FaCloudUploadAlt, FaCheckCircle, FaExclamationCircle, FaTrashAlt, FaBan } from "react-icons/fa";
 import FileIcon from "./FileIcon";
-import { API_BASE } from "../..//src/config";
+
 
 const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
-  const API_BASE = import.meta.env.DEV ? "http://localhost:3000" : "";
+  const API_BASE = "https://api.filecloud.azaken.com"
   const [files, setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
