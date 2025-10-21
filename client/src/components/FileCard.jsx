@@ -4,9 +4,11 @@ import Loader from "./Loader";
 import FileIcon from "./FileIcon"; 
 
 const formatFileSize = (bytes) => {
+  if (bytes === null || bytes === undefined) return "-";
   if (bytes === 0) return '0 Bytes';
   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
   const i = Math.floor(Math.log(bytes) / Math.log(1024));
+  if (i < 0) return `${bytes} Bytes`;
   return (bytes / Math.pow(1024, i)).toFixed(2) + ' ' + sizes[i];
 };
 
@@ -39,10 +41,9 @@ const FileCard = ({ file, onDelete, onDownload }) => {
 
   const handleDelete = () => {
     setLoading(true);
-    onDelete(file.fileId).finally(() => {
-      setLoading(false);
-      window.location.reload();
-    });
+    onDelete(file.fileId)
+      .then(() => setLoading(false))
+      .catch(() => setLoading(false));
   };
 
   return (
@@ -69,13 +70,17 @@ const FileCard = ({ file, onDelete, onDownload }) => {
         <div className="flex space-x-4 mt-4">
           <button
             onClick={handleDownload}
-            className="bg-gray-600 hover:bg-gray-500 border-2 border-gray-500 px-4 py-2 rounded-full flex items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:scale-105"
+            className="w-12 h-10 rounded-full text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-white border-2 border-white flex items-center justify-center transition duration-200 transform hover:scale-105 hover:bg-white/10"
+            aria-label={`Download ${file.fileName}`}
+            title="Download"
           >
             <FaDownload className="text-lg" />
           </button>
           <button
             onClick={handleDelete}
-            className="bg-red-600 hover:bg-red-500 border-2 border-red-600 px-4 py-2 rounded-full flex items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:scale-105"
+            className="w-12 h-10 rounded-full text-red-400 hover:text-red-300 focus:outline-none focus:ring-2 focus:ring-red-500 border-2 border-red-600 flex items-center justify-center transition duration-200 transform hover:scale-105 hover:bg-red-600/10"
+            aria-label={`Delete ${file.fileName}`}
+            title="Delete"
           >
             <FaTrash className="text-lg" />
           </button>
