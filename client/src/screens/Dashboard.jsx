@@ -106,7 +106,7 @@ const Dashboard = () => {
         setIsUploading(false);
         // small delay to allow server writes to become consistent
         await new Promise((r) => setTimeout(r, 300));
-        const resp = await fetch(`${API_BASE}/files?username=${username}`, { method: 'GET' });
+        const resp = await fetch(`https://api.filecloud.azaken.com/files?username=${username}`, { method: 'GET' });
         const data = await resp.json();
         if (Array.isArray(data)) {
           // replace full lists with authoritative server state (canonicalized)
@@ -202,7 +202,7 @@ const Dashboard = () => {
       }
 
       try {
-        const response = await fetch(`${API_BASE}/files?username=${username}`, { 
+        const response = await fetch(`https://api.filecloud.azaken.com/files?username=${username}`, { 
           method: "GET",
         });
 
