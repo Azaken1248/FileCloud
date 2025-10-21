@@ -7,11 +7,12 @@ import FolderCard from "../components/FolderCard";
 import SearchBar from "../components/SearchBar";
 import UploadFiles from "../components/UploadFiles";
 import Loader from "../components/Loader";
+import { API_BASE } from "../config";
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [files, setFiles] = useState([]);
-  const [filteredFiles, setFilteredFiles] = useState([]);
+  const [_filteredFiles, setFilteredFiles] = useState([]);
   const [currentFolderId, setCurrentFolderId] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
   const [navHistory, setNavHistory] = useState([null]);
@@ -101,12 +102,12 @@ const Dashboard = () => {
     // are loaded into state (this prevents cases where server-created intermediate folders
     // didn't get returned in the upload response). This will make subfolders appear
     // immediately without requiring the user to manually refresh.
-    (async () => {
+        (async () => {
       try {
         setIsUploading(false);
         // small delay to allow server writes to become consistent
         await new Promise((r) => setTimeout(r, 300));
-        const resp = await fetch(`https://api.filecloud.azaken.com/files?username=${username}`, { method: 'GET' });
+        const resp = await fetch(`${API_BASE}/files?username=${username}`, { method: 'GET' });
         const data = await resp.json();
         if (Array.isArray(data)) {
           // replace full lists with authoritative server state (canonicalized)
@@ -202,7 +203,7 @@ const Dashboard = () => {
       }
 
       try {
-        const response = await fetch(`https://api.filecloud.azaken.com/files?username=${username}`, { 
+        const response = await fetch(`${API_BASE}/files?username=${username}`, { 
           method: "GET",
         });
 
