@@ -29,8 +29,8 @@ const AuthPage = () => {
     setLoading(true); 
 
     const url = isLogin
-      ? "https://api.filecloud.azaken.com/login"
-      : "https://api.filecloud.azaken.com/signup";
+      ? "http://localhost:3000/login"
+      : "http://localhost:3000/signup";
 
     try {
       const response = await fetch(url, {
