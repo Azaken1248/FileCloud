@@ -63,7 +63,7 @@ const FolderCard = ({ folder, onOpen, onDelete, onDownload }) => {
           <div className="flex justify-center mb-3 h-[76px] items-center">
             <FileIcon fileName={folder.fileName} isFolder={true} />
           </div>
-          <h3 className="text-sm sm:text-lg font-semibold truncate w-full break-all">{folder.fileName}</h3>
+          <h3 className="text-sm sm:text-l font-semibold truncate w-full break-all">{folder.fileName}</h3>
           <p className="text-sm text-gray-300">{formatFileSize(folder.folderSize || 0)}</p>
           <p className="text-xs text-gray-400">{formatTimestamp(folder.uploadedAt)}</p>
         </div>
