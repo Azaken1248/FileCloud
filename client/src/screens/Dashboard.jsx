@@ -542,7 +542,7 @@ const Dashboard = () => {
                   {mobileFilesTab === 'recent' && (
                     <div>
                       {viewMode === 'grid' ? (
-                        <div className="grid grid-cols-2 gap-3">
+                        <div className="grid grid-cols-1 gap-3">
                           {mergedRecentFiles.map((f) => (
                             <FileCard key={f.fileId} file={f} onDelete={() => handleDelete(f.fileId)} onDownload={() => handleDownload(f)} />
                           ))}
@@ -560,7 +560,7 @@ const Dashboard = () => {
                   {mobileFilesTab === 'top' && (
                     <div>
                       {viewMode === 'grid' ? (
-                        <div className="grid grid-cols-2 gap-3">
+                        <div className="grid grid-cols-1 gap-3">
                           {largestFiles.map((f) => (
                             <FileCard key={f.fileId} file={f} onDelete={() => handleDelete(f.fileId)} onDownload={() => handleDownload(f)} />
                           ))}
