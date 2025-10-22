@@ -15,6 +15,21 @@ const formatFileSize = (bytes) => {
 const FileCard = ({ file, onDelete, onDownload }) => {
   const [loading, setLoading] = useState(false);
 
+  const formatTimestamp = (iso) => {
+    if (!iso) return '-';
+    const d = new Date(iso);
+    if (isNaN(d.getTime())) return iso;
+    const now = Date.now();
+    const diff = Math.floor((now - d.getTime()) / 1000);
+    if (diff < 10) return 'just now';
+    if (diff < 60) return `${diff}s ago`;
+    if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
+    if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
+    if (diff < 60 * 86400) return `${Math.floor(diff / 86400)}d ago`;
+    // for older dates show a readable local date/time
+    return d.toLocaleString();
+  };
+
   const handleDownload = async () => {
     setLoading(true);
     try {
@@ -48,7 +63,7 @@ const FileCard = ({ file, onDelete, onDownload }) => {
 
   return (
     <div
-      className="bg-gray-700 text-gray-100 rounded-xl shadow-md p-6 w-full sm:max-w-md hover:scale-105 transition-transform duration-300 ease-in-out relative overflow-hidden"
+      className="bg-transparent text-gray-100 rounded-lg border-2 border-blue-300 p-4 w-full sm:max-w-md hover:border-blue-400 hover:bg-blue-300/25 hover:scale-105 transform transition-all duration-200 ease-in-out relative overflow-hidden"
       title={file.fileName}
     >
       {loading && (
@@ -64,25 +79,25 @@ const FileCard = ({ file, onDelete, onDownload }) => {
           </div>
           <h3 className="text-sm sm:text-l font-semibold truncate w-full break-all">{file.fileName}</h3>
           <p className="text-sm text-gray-300 truncate">{formatFileSize(file.fileSize)}</p>
-          <p className="text-xs text-gray-400">{file.uploadedAt}</p>
+          <p className="text-xs text-gray-400">{formatTimestamp(file.uploadedAt)}</p>
         </div>
 
-        <div className="flex space-x-4 mt-4">
+        <div className="flex space-x-3 mt-4">
           <button
             onClick={handleDownload}
-            className="w-12 h-10 rounded-full text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-white border-2 border-white flex items-center justify-center transition duration-200 transform hover:scale-105 hover:bg-white/10"
+            className="w-10 h-10 rounded-md text-blue-300 hover:text-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-300 border border-blue-300 flex items-center justify-center transition-colors duration-150"
             aria-label={`Download ${file.fileName}`}
             title="Download"
           >
-            <FaDownload className="text-lg" />
+            <FaDownload className="text-base" />
           </button>
           <button
             onClick={handleDelete}
-            className="w-12 h-10 rounded-full text-red-400 hover:text-red-300 focus:outline-none focus:ring-2 focus:ring-red-500 border-2 border-red-600 flex items-center justify-center transition duration-200 transform hover:scale-105 hover:bg-red-600/10"
+            className="w-10 h-10 rounded-md text-red-400 hover:text-red-300 focus:outline-none focus:ring-2 focus:ring-red-500 border border-red-400 flex items-center justify-center transition-colors duration-150"
             aria-label={`Delete ${file.fileName}`}
             title="Delete"
           >
-            <FaTrash className="text-lg" />
+            <FaTrash className="text-base" />
           </button>
         </div>
       </div>

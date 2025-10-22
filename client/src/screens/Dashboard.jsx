@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import FileCard from "../components/FileCard";
@@ -12,7 +12,9 @@ const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [files, setFiles] = useState([]);
   const [_filteredFiles, setFilteredFiles] = useState([]);
+  const [searchActive, setSearchActive] = useState(false);
   const [currentFolderId, setCurrentFolderId] = useState(null);
+  const [searchResetSignal, setSearchResetSignal] = useState(0);
   const [isUploading, setIsUploading] = useState(false);
   const [navHistory, setNavHistory] = useState([null]);
   const [navPos, setNavPos] = useState(0);
@@ -28,7 +30,6 @@ const Dashboard = () => {
     console.log("Upload success response:", newFiles);
     const incoming = Array.isArray(newFiles) ? newFiles : [newFiles];
 
-    // normalize incoming items and prefer server-provided parentId/type when present
     const normalized = incoming.map((f) => ({
       parentId: (f.parentId !== undefined && f.parentId !== null) ? f.parentId : (currentFolderId || null),
       type: f.type || "file",
@@ -43,14 +44,12 @@ const Dashboard = () => {
       userEmail: f.userEmail || localStorage.getItem("username"),
     }));
 
-    // merge with existing files, deduplicate by fileId and by (type+fileName+parentId) key
     setFiles((prevFiles) => {
       const mapById = new Map();
       const seenByKey = new Map();
 
       const makeKey = (it) => `${it.type || 'file'}::${it.fileName}::${it.parentId || 'root'}`;
 
-      // seed with previous files
       for (const it of prevFiles) {
         const id = it.fileId || makeKey(it);
         const key = makeKey(it);
@@ -58,7 +57,6 @@ const Dashboard = () => {
         mapById.set(id, it);
       }
 
-      // Add incoming folders first, then files to ensure parents exist before children
       const incomingFolders = normalized.filter((x) => x.type === 'folder');
       const incomingFiles = normalized.filter((x) => x.type !== 'folder');
 
@@ -97,19 +95,13 @@ const Dashboard = () => {
       return Array.from(mapById.values());
     });
 
-    // After optimistic merge, force a server refresh to ensure all created nested folders
-    // are loaded into state (this prevents cases where server-created intermediate folders
-    // didn't get returned in the upload response). This will make subfolders appear
-    // immediately without requiring the user to manually refresh.
         (async () => {
       try {
         setIsUploading(false);
-        // small delay to allow server writes to become consistent
         await new Promise((r) => setTimeout(r, 300));
         const resp = await fetch(`https://api.filecloud.azaken.com/files?username=${username}`, { method: 'GET' });
         const data = await resp.json();
         if (Array.isArray(data)) {
-          // replace full lists with authoritative server state (canonicalized)
           canonicalizeAndSet(data);
         }
       } catch (err) {
@@ -120,6 +112,13 @@ const Dashboard = () => {
 
   const openFolder = (folder) => {
     const id = folder.fileId;
+    // If a search is active, clear it and set filtered files to target folder contents immediately
+    if (searchActive) {
+      const shown = files.filter((f) => (f.parentId || null) === id);
+      setFilteredFiles(shown);
+      setSearchActive(false);
+      setSearchResetSignal((s) => s + 1);
+    }
     setCurrentFolderId(id);
     const newHist = navHistory.slice(0, navPos + 1);
     newHist.push(id);
@@ -140,7 +139,6 @@ const Dashboard = () => {
 
   const username = localStorage.getItem("username"); 
 
-  // Helper to canonicalize and set server data (dedupe and remap parentIds)
   const canonicalizeAndSet = (data) => {
     const makeKey = (it) => `${it.type || 'file'}::${it.fileName}::${it.parentId || 'root'}`;
     const groups = new Map();
@@ -223,9 +221,7 @@ const Dashboard = () => {
     fetchFiles();
   }, [username]);
 
-  // Compute folder sizes (including nested files and subfolders)
   const computeFolderSizes = (items) => {
-    // Build a map from id -> children
     const childrenMap = new Map();
     for (const it of items) {
       const pid = it.parentId || null;
@@ -250,14 +246,13 @@ const Dashboard = () => {
       return total;
     };
 
-    // precompute for all folder ids
     for (const it of items) {
       if (it.type === 'folder') {
         dfsSize(it.fileId);
       }
     }
 
-    return sizeCache; // map of id -> size in bytes
+    return sizeCache; 
   };
 
   const handleDelete = async (fileId) => {
@@ -275,7 +270,6 @@ const Dashboard = () => {
       if (response.ok) {
         const result = await response.json();
         console.log(result.message);
-        // remove file locally from files and filteredFiles
         setFiles((prev) => prev.filter((f) => f.fileId !== fileId));
         setFilteredFiles((prev) => prev.filter((f) => f.fileId !== fileId));
       } else {
@@ -288,7 +282,6 @@ const Dashboard = () => {
     }
   };
 
-  // Helper to remove a folder and all of its descendant items from a list
   const removeItemAndChildren = (items, idToRemove) => {
     const toRemove = new Set([idToRemove]);
     let changed = true;
@@ -306,7 +299,6 @@ const Dashboard = () => {
     return items.filter((it) => !toRemove.has(it.fileId));
   };
 
-  // Called by FolderCard which already asks for confirmation in its UI
   const handleDeleteFolder = async (fileId) => {
     try {
       const response = await fetch(`https://api.filecloud.azaken.com/files/${fileId}`, {
@@ -319,7 +311,6 @@ const Dashboard = () => {
       if (response.ok) {
         const result = await response.json();
         console.log(result.message);
-        // remove folder and its children locally
         setFiles((prev) => removeItemAndChildren(prev, fileId));
         setFilteredFiles((prev) => removeItemAndChildren(prev, fileId));
       } else {
@@ -353,13 +344,13 @@ const Dashboard = () => {
 
       <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
 
-      <div className={`transition-all duration-300 ${isSidebarOpen ? "lg:ml-64" : ""} min-h-screen bg-gray-800 text-white p-6`}>
+  <div className={`transition-all duration-300 ${isSidebarOpen ? "lg:ml-64" : ""} min-h-screen bg-gray-800 text-gray-100 p-6`}>
         <div className="flex items-center justify-center mb-6 gap-4">
-          <SearchBar setFilteredFiles={setFilteredFiles} files={files} setIsUploading={setIsUploading} />
+          <SearchBar setFilteredFiles={setFilteredFiles} files={files} setIsUploading={setIsUploading} setSearchActive={setSearchActive} searchResetSignal={searchResetSignal} />
         </div>
 
         {isUploading && (
-          <div className="bg-gray-900 p-4 rounded-lg mb-6">
+          <div className="bg-gray-800 p-4 rounded-lg mb-6">
             <UploadFiles onUploadSuccess={handleUploadSuccess} currentFolderId={currentFolderId} />
           </div>
         )}
@@ -391,7 +382,7 @@ const Dashboard = () => {
         />
 
         {loading && (
-          <div className="flex justify-center min-h-screen bg-gray-800">
+            <div className="flex justify-center min-h-screen bg-gray-800">
             <Loader />
           </div>
         )}
@@ -418,7 +409,7 @@ const Dashboard = () => {
 
         <div className="flex flex-col gap-4 sm:grid sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-7">
           {(() => {
-            const shown = files.filter((f) => (f.parentId || null) === currentFolderId);
+            const shown = searchActive ? _filteredFiles : files.filter((f) => (f.parentId || null) === currentFolderId);
             const folders = shown.filter((f) => f.type === "folder");
             const plainFiles = shown.filter((f) => f.type !== "folder");
 

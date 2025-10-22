@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom"; 
 import Loader from "../components/Loader";
 
@@ -59,7 +59,7 @@ const AuthPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center">
-      <div className="w-full max-w-md bg-gray-800 text-white rounded-lg shadow-lg p-8">
+  <div className="w-full max-w-md bg-gray-700 text-gray-100 rounded-lg shadow-lg p-8">
         <h2 className="text-3xl font-bold mb-6 text-center">
           {isLogin ? "Login to Your Account" : "Create an Account"}
         </h2>
@@ -91,7 +91,7 @@ const AuthPage = () => {
                   placeholder="Your Name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full mt-1 px-4 py-2 bg-gray-700 rounded focus:outline-none focus:ring focus:ring-indigo-500"
+                  className="w-full mt-1 px-4 py-2 bg-gray-700 text-gray-100 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
               </div>
             )}
@@ -105,7 +105,7 @@ const AuthPage = () => {
                 placeholder="you@example.com"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="w-full mt-1 px-4 py-2 bg-gray-700 rounded focus:outline-none focus:ring focus:ring-indigo-500"
+                className="w-full mt-1 px-4 py-2 bg-gray-700 text-gray-100 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
             </div>
             <div>
@@ -118,12 +118,12 @@ const AuthPage = () => {
                 placeholder="Enter your password"
                 value={formData.password}
                 onChange={handleInputChange}
-                className="w-full mt-1 px-4 py-2 bg-gray-700 rounded focus:outline-none focus:ring focus:ring-indigo-500"
+                className="w-full mt-1 px-4 py-2 bg-gray-700 text-gray-100 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
             </div>
             <button
               type="submit"
-              className="w-full bg-indigo-600 py-2 px-4 rounded text-white font-medium hover:bg-indigo-700 transition"
+              className="w-full py-2 px-4 rounded-md text-indigo-400 border border-indigo-400 hover:bg-indigo-600 hover:text-white transition focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
               {isLogin ? "Login" : "Sign Up"}
             </button>

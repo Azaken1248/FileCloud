@@ -360,73 +360,76 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
   
 
   return (
-    <div className="bg-gray-700 text-gray-100 rounded-xl shadow-md p-6 mx-auto max-w-lg">
-      <h3 className="text-xl font-semibold mb-4 text-center">Upload Files or Create Folder</h3>
+    <div className="bg-gray-700 text-gray-100 rounded-xl shadow-md p-4 mx-auto w-full max-w-xl">
+      <h3 className="text-lg sm:text-xl font-semibold mb-3 text-center">Upload Files or Create Folder</h3>
 
-      <div className="mb-6 flex flex-col gap-2">
-        <div className="flex justify-center gap-4">
-          <div className="flex items-center gap-4">
-            <label htmlFor="file-upload" className="block text-center text-lg mb-2">
-              <input
-                id="file-upload"
-                type="file"
-                multiple
-                onChange={handleFileChange}
-                className="hidden"
-              />
-              <span className="cursor-pointer text-blue-400 hover:text-blue-300 transition duration-300 ease-in-out">
-                <FaCloudUploadAlt className="inline text-4xl mr-2" />
-                Choose Files
-              </span>
-            </label>
+      <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+          <label htmlFor="file-upload" className="text-center">
+            <input
+              id="file-upload"
+              type="file"
+              multiple
+              onChange={handleFileChange}
+              className="hidden"
+            />
+            <span className="inline-flex items-center gap-2 cursor-pointer text-blue-400 hover:text-blue-300 transition duration-200 ease-in-out text-sm sm:text-base px-3 py-2 border border-transparent rounded-md hover:bg-blue-500/5">
+              <FaCloudUploadAlt className="text-2xl sm:text-3xl" />
+              <span className="hidden sm:inline">Choose Files</span>
+              <span className="sm:hidden">Files</span>
+            </span>
+          </label>
 
-            <label htmlFor="folder-upload" className="block text-center text-lg mb-2">
-              <input
-                id="folder-upload"
-                type="file"
-                multiple
-                webkitdirectory="true"
-                directory=""
-                onChange={(e) => {
-                    const selected = Array.from(e.target.files || []);
-                    if (!selected.length) return;
-                    const firstRel = selected[0].webkitRelativePath || selected[0].name;
-                    const root = firstRel.split('/')[0] || firstRel;
-                    const folderId = `${Date.now()}-folder-${Math.random().toString(36).slice(2)}`;
-                    const folderFiles = selected.map((f, idx) => ({
-                      id: `${folderId}-${idx}`,
-                      file: f,
-                      name: f.name,
-                      size: f.size,
-                      relativePath: f.webkitRelativePath || f.name,
-                    }));
+          <label htmlFor="folder-upload" className="text-center">
+            <input
+              id="folder-upload"
+              type="file"
+              multiple
+              webkitdirectory="true"
+              directory=""
+              onChange={(e) => {
+                  const selected = Array.from(e.target.files || []);
+                  if (!selected.length) return;
+                  const firstRel = selected[0].webkitRelativePath || selected[0].name;
+                  const root = firstRel.split('/')[0] || firstRel;
+                  const folderId = `${Date.now()}-folder-${Math.random().toString(36).slice(2)}`;
+                  const folderFiles = selected.map((f, idx) => ({
+                    id: `${folderId}-${idx}`,
+                    file: f,
+                    name: f.name,
+                    size: f.size,
+                    relativePath: f.webkitRelativePath || f.name,
+                  }));
 
-                    const folderEntry = {
-                      id: folderId,
-                      type: 'folder',
-                      folderName: root,
-                      files: folderFiles,
-                      totalBytes: folderFiles.reduce((s, x) => s + (x.size || 0), 0),
-                      uploadedBytes: 0,
-                      progress: 0,
-                      status: 'queued',
-                      error: null,
-                    };
+                  const folderEntry = {
+                    id: folderId,
+                    type: 'folder',
+                    folderName: root,
+                    files: folderFiles,
+                    totalBytes: folderFiles.reduce((s, x) => s + (x.size || 0), 0),
+                    uploadedBytes: 0,
+                    progress: 0,
+                    status: 'queued',
+                    error: null,
+                  };
 
-                    setFiles((prev) => [...prev, folderEntry]);
-                    setUploadError(null);
-                }}
-                className="hidden"
-              />
-              <span className="cursor-pointer text-blue-400 hover:text-blue-300 transition duration-300 ease-in-out">
-                <FaCloudUploadAlt className="inline text-4xl mr-2" />
-                Choose Folder
-              </span>
-            </label>
-          </div>
+                  setFiles((prev) => [...prev, folderEntry]);
+                  setUploadError(null);
+              }}
+              className="hidden"
+            />
+            <span className="inline-flex items-center gap-2 cursor-pointer text-blue-400 hover:text-blue-300 transition duration-200 ease-in-out text-sm sm:text-base px-3 py-2 border border-transparent rounded-md hover:bg-blue-500/5">
+              <FaCloudUploadAlt className="text-2xl sm:text-3xl" />
+              <span className="hidden sm:inline">Choose Folder</span>
+              <span className="sm:hidden">Folder</span>
+            </span>
+          </label>
+        </div>
+
+        <div className="flex-shrink-0">
           <button
             type="button"
-            className="border-2 border-green-500 text-green-300 px-4 py-2 rounded-lg hover:bg-green-500/10 hover:text-green-300"
+            className="inline-flex items-center justify-center bg-transparent text-green-300 border border-green-300 hover:text-green-400 text-sm sm:text-base px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-300/25"
             onClick={() => setShowFolderModal(true)}
             aria-label="Create Folder"
           >
@@ -437,7 +440,7 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
 
       {showFolderModal && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-          <div className="bg-gray-800 p-6 rounded-lg shadow-lg w-80 flex flex-col gap-4">
+          <div className="bg-gray-700 p-6 rounded-lg shadow-lg w-80 flex flex-col gap-4">
             <h4 className="text-lg font-semibold text-center">Create New Folder</h4>
             <input
               type="text"
@@ -474,7 +477,7 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
         {Array.isArray(files) && files.length > 0 ? (
           <ul className="space-y-3">
             {files.map((entry) => (
-              <li key={entry.id} className="text-sm text-gray-300 bg-gray-800 p-3 rounded-md flex flex-col">
+              <li key={entry.id} className="text-sm text-gray-200 bg-gray-700 p-3 rounded-md flex flex-col">
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-3 truncate">
                     <div className="flex-shrink-0">
@@ -508,21 +511,20 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
                   </div>
                 </div>
 
-                <div className="mt-2">
-                  <div className="relative w-full">
-                    <div className="h-6 border-2 border-gray-600 rounded-full w-full bg-transparent" />
+                <div className="mt-3 w-full">
+                  <div className="relative w-full h-2.5 bg-gray-700 rounded-md overflow-hidden">
                     <div
-                      className="absolute left-0 bg-blue-500 rounded-full transition-all duration-200"
+                      className="absolute left-0 top-0 h-full transition-all duration-300"
                       style={{
                         width: entry.progress === null ? "100%" : `${entry.progress}%`,
-                        top: "2px",
-                        height: "calc(100% - 4px)",
+                        background: `#10B981`,
+                        boxShadow: '0 1px 4px rgba(16,185,129,0.12)'
                       }}
                     />
                   </div>
-                  <div className="text-xs text-gray-400 mt-1 flex justify-between">
-                    <span className="capitalize">{entry.status}</span>
-                    <span>{entry.progress === null ? "..." : `${entry.progress}%`}</span>
+                  <div className="mt-2 flex items-center justify-between text-xs text-gray-300">
+                    <span className="capitalize truncate max-w-[60%]">{entry.status}</span>
+                    <span className="ml-2 w-12 text-right">{entry.progress === null ? "..." : `${entry.progress}%`}</span>
                   </div>
                   {entry.error && <div className="text-xs text-red-400 mt-1">{entry.error}</div>}
                 </div>
@@ -537,18 +539,20 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
       {uploading && (
         <div className="mb-6">
           <p className="text-sm text-gray-300">Uploading...</p>
-          <div className="relative h-6 w-full mt-2">
-            <div className="h-6 border-2 border-gray-600 rounded-full w-full bg-transparent" />
-            <div
-              className="absolute left-0 bg-blue-600 rounded-full transition-all duration-200"
-              style={{
-                width: progress === null ? "100%" : `${progress}%`,
-                top: "2px",
-                height: "calc(100% - 4px)",
-              }}
-            ></div>
-            <div className="relative z-10 flex items-center justify-center h-full text-sm text-white font-medium">
-              {progress === null ? "Uploading..." : `${progress}%`}
+          <div className="relative w-full mt-2">
+            <div className="w-full h-2.5 bg-gray-700 rounded-md overflow-hidden">
+              <div
+                className="h-full transition-all duration-300"
+                    style={{
+                      width: progress === null ? "100%" : `${progress}%`,
+                      background: `#10B981`,
+                      boxShadow: '0 2px 6px rgba(16,185,129,0.08)'
+                    }}
+                  />
+            </div>
+            <div className="mt-2 flex items-center justify-between text-sm text-gray-300">
+              <div className="truncate">{progress === null ? "Uploading..." : "Upload progress"}</div>
+              <div className="w-12 text-right">{progress === null ? "..." : `${progress}%`}</div>
             </div>
           </div>
         </div>
@@ -562,20 +566,23 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
       )}
 
       {!uploading && !uploadError && files.length > 0 && (
-        <div className="mb-6">
+        <div className="mb-6 flex flex-col sm:flex-row sm:items-center gap-3">
           <button
             onClick={handleUpload}
-            className="w-full border-2 border-blue-500 text-blue-300 py-3 rounded-lg transition duration-300 ease-in-out hover:bg-blue-500/10 hover:text-blue-300"
+            className="flex-1 w-full sm:w-auto border-2 border-blue-500 text-blue-300 py-3 rounded-lg transition duration-300 ease-in-out hover:bg-blue-500/10 hover:text-blue-300"
           >
             Upload Files
           </button>
-        </div>
-      )}
 
-      {!uploading && files.length === 0 && (
-        <p className="text-sm text-gray-400 text-center">
-          No files selected. Please select files to upload.
-        </p>
+          <button
+            type="button"
+            className="inline-flex items-center justify-center bg-transparent text-green-500 hover:text-green-400 text-sm sm:text-base px-3 py-3 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500/25"
+            onClick={() => setShowFolderModal(true)}
+            aria-label="Create Folder"
+          >
+            + New Folder
+          </button>
+        </div>
       )}
 
       {uploading === false && progress === 100 && !uploadError && (

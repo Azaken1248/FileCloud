@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Darker theme overlay (lightweight) */
+:root {
+	--ui-darken: 0.86; /* 1.0 is unchanged, lower makes darker */
+}
+
+/* Apply a slight darkening and contrast boost globally. This is non-destructive — remove to revert. */
+#root, body, .app-root {
+	filter: brightness(var(--ui-darken)) contrast(1.02);
+}
+

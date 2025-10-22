@@ -1,4 +1,3 @@
-import React from "react";
 import { FaSignOutAlt, FaTimes } from "react-icons/fa";
 
 

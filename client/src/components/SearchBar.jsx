@@ -1,22 +1,55 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
-const SearchBar = ({ files, setFilteredFiles, setIsUploading }) => {
+const SearchBar = ({ files, setFilteredFiles, setIsUploading, setSearchActive, searchResetSignal }) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const timerRef = useRef(null);
 
-  const handleSearch = (e) => {
-    const query = e.target.value.toLowerCase();
-    setSearchQuery(query);
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
+
+  // when parent requests a reset (increment signal), clear local input
+  useEffect(() => {
+    if (typeof searchResetSignal !== 'undefined') {
+      setSearchQuery("");
+      if (typeof setSearchActive === "function") setSearchActive(false);
+    }
+  }, [searchResetSignal]);
+
+  const runFilter = (raw) => {
+    const query = (raw || "").trim().toLowerCase();
+    if (!query) {
+      setFilteredFiles(files);
+      if (typeof setSearchActive === "function") setSearchActive(false);
+      return;
+    }
+
+    if (typeof setSearchActive === "function") setSearchActive(true);
+
+    const safeIncludes = (val) => {
+      if (val === undefined || val === null) return false;
+      return String(val).toLowerCase().includes(query);
+    };
 
     const filteredFiles = files.filter((file) => {
       return (
-        file.fileName.toLowerCase().includes(query) ||
-        file.fileSize.toString().toLowerCase().includes(query) ||
-        file.fileType.toLowerCase().includes(query) ||
-        file.uploadedAt.toLowerCase().includes(query)
+        safeIncludes(file.fileName) ||
+        safeIncludes(file.fileSize) ||
+        safeIncludes(file.fileType) ||
+        safeIncludes(file.uploadedAt)
       );
     });
 
     setFilteredFiles(filteredFiles);
+  };
+
+  const handleSearch = (e) => {
+    const raw = e.target.value || "";
+    setSearchQuery(raw);
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => runFilter(raw), 120);
   };
 
   return (
@@ -26,7 +59,7 @@ const SearchBar = ({ files, setFilteredFiles, setIsUploading }) => {
         placeholder="Search files..."
         value={searchQuery}
         onChange={handleSearch}
-        className="bg-gray-800 text-gray-100 p-2 rounded border-2 border-gray-500 focus:outline-none w-full"
+  className="bg-gray-700 text-gray-100 p-2 rounded border-2 border-gray-500 focus:outline-none w-full"
       />
       <button
         onClick={() => setIsUploading((prevState) => !prevState)}
