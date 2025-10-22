@@ -6,7 +6,7 @@ import path from "path";
 
 const router = express.Router();
 const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
+const upload = multer({ storage: storage, limits: { fileSize: 200 * 1024 * 1024, fieldSize: 50 * 1024 * 1024 } });
 
 const generateId = () => crypto.randomBytes(12).toString("hex");
 
@@ -32,7 +32,20 @@ const getContentType = (file) => {
     }
 };
 
-router.post("/upload", upload.any(), async (req, res) => {
+router.post("/upload", (req, res, next) => {
+    upload.any()(req, res, function (err) {
+        if (err) {
+            console.error('Multer error on upload:', err && err.message);
+            if (err.code === 'LIMIT_FILE_SIZE') {
+                res.status(413).json({ error: 'File too large', details: err.message });
+                return;
+            }
+            res.status(400).json({ error: 'Upload error', details: err.message });
+            return;
+        }
+        next();
+    });
+}, async (req, res) => {
     const { username } = req.body;
     if (!username) {
         return res.status(400).json({ error: "Username is required" });
@@ -185,12 +198,6 @@ router.post("/upload", upload.any(), async (req, res) => {
         }
     }
 
-    // Deduplicate and normalize createdFolders before returning so client
-    // doesn't receive duplicate folder entries when multiple files caused
-    // the same folder to be created/found during the request.
-    // If multiple concurrent uploads created the same folder (same userEmail + parentId + fileName),
-    // perform a cleanup: find duplicates across the table, choose a canonical folder, reparent children,
-    // delete duplicates, and ensure returned results reference the canonical ids.
     const dedupedFolders = [];
     const processedKeys = new Set();
 
@@ -201,7 +208,6 @@ router.post("/upload", upload.any(), async (req, res) => {
         if (processedKeys.has(key)) continue;
         processedKeys.add(key);
 
-        // find all folder items matching this key across the table
         const scanParams = {
             TableName: 'Files',
             FilterExpression: 'userEmail = :u and parentId = :pid and fileName = :name and #t = :t',
@@ -216,19 +222,16 @@ router.post("/upload", upload.any(), async (req, res) => {
 
         let found = await dynamoDB.scan(scanParams).promise();
         let items = (found.Items && found.Items.length) ? found.Items.slice() : [];
-        // handle pagination
         while (found.LastEvaluatedKey) {
             found = await dynamoDB.scan({ ...scanParams, ExclusiveStartKey: found.LastEvaluatedKey }).promise();
             if (found.Items && found.Items.length) items.push(...found.Items);
         }
 
         if (items.length <= 1) {
-            // nothing to dedupe; push the single canonical (either existing or the one we created)
             if (items.length === 1) dedupedFolders.push(items[0]);
             continue;
         }
 
-        // choose canonical folder: prefer the earliest uploadedAt if present, otherwise first
         items.sort((a, b) => {
             const atA = a.uploadedAt ? new Date(a.uploadedAt).getTime() : 0;
             const atB = b.uploadedAt ? new Date(b.uploadedAt).getTime() : 0;
@@ -237,10 +240,9 @@ router.post("/upload", upload.any(), async (req, res) => {
         const canonical = items[0];
         const duplicates = items.slice(1);
 
-        // For each duplicate, reparent its children (files and folders) to canonical, then delete the duplicate folder
         for (const dup of duplicates) {
             try {
-                // find children referencing dup.fileId as parentId
+
                 const childScan = {
                     TableName: 'Files',
                     FilterExpression: 'parentId = :pid',
@@ -253,7 +255,7 @@ router.post("/upload", upload.any(), async (req, res) => {
                     if (childRes.Items && childRes.Items.length) children.push(...childRes.Items);
                 }
 
-                // update each child's parentId to canonical.fileId
+
                 for (const child of children) {
                     try {
                         await dynamoDB.update({
@@ -267,7 +269,6 @@ router.post("/upload", upload.any(), async (req, res) => {
                     }
                 }
 
-                // delete the duplicate folder metadata
                 try {
                     await dynamoDB.delete({ TableName: 'Files', Key: { fileId: dup.fileId } }).promise();
                 } catch (err) {
@@ -278,17 +279,13 @@ router.post("/upload", upload.any(), async (req, res) => {
             }
         }
 
-        // push canonical to deduped list
         dedupedFolders.push(canonical);
     }
 
-    // Update returned results: if any file result references a parentId that was a duplicate
-    // that we removed, ensure it points to the canonical id. Build a map from old->canonical.
+
     const mapping = {};
     for (const f of createdFolders) {
         const parent = f.parentId || null;
-        const key = `${f.type || 'folder'}::${f.fileName}::${parent}`;
-        // find canonical in dedupedFolders
         const canonical = dedupedFolders.find((d) => d.fileName === f.fileName && (d.parentId || null) === parent && d.userEmail === f.userEmail);
         if (canonical && canonical.fileId !== f.fileId) mapping[f.fileId] = canonical.fileId;
     }
