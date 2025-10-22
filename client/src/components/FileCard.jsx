@@ -26,7 +26,6 @@ const FileCard = ({ file, onDelete, onDownload }) => {
     if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
     if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
     if (diff < 60 * 86400) return `${Math.floor(diff / 86400)}d ago`;
-    // for older dates show a readable local date/time
     return d.toLocaleString();
   };
 

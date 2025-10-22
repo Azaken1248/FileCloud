@@ -67,11 +67,9 @@ const InfoPanel = ({ totalBytes = 0, recentFiles = [], typeBreakdown = [], large
         )}
       </div>
 
-      {/* Mobile-only tabs were moved to the breadcrumbs area; keep this card focused on storage and categories */}
     </div>
   );
 
-  // Desktop sidebar variant
   const desktopVariant = (
   <aside className="hidden lg:block w-72 bg-transparent text-gray-100 p-4 rounded-lg border-2 border-blue-300">
       <h3 className="text-lg font-semibold mb-3">Storage & Activity</h3>

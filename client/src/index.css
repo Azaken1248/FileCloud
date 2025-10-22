@@ -2,13 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Darker theme overlay (lightweight) */
 :root {
-	--ui-darken: 0.86; /* 1.0 is unchanged, lower makes darker */
+	--ui-darken: 0.86; 
 }
 
-/* Apply a slight darkening and contrast boost globally. This is non-destructive — remove to revert. */
-#root, body, .app-root {
-	filter: brightness(var(--ui-darken)) contrast(1.02);
+
+html, body, #root {
+  overflow-x: hidden;
+}
+
+.hide-scrollbar {
+	-ms-overflow-style: none; 
+	scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+	display: none; 
+}
+
+
+@media (max-width: 640px) {
+	.mobile-tight-actions {
+		gap: 8px;
+	}
+	.mobile-small-action {
+		width: 32px;
+		height: 32px;
+	}
+}
+
+
+@media (max-width: 640px) {
+	.clamp-ch-18 {
+		max-width: 18ch;
+	}
 }
 

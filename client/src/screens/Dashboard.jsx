@@ -32,7 +32,6 @@ const Dashboard = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  // mobile Info is always visible now; no toggle needed
 
   const handleUploadSuccess = (newFiles) => {
     console.log("Upload success response:", newFiles);
@@ -120,12 +119,10 @@ const Dashboard = () => {
 
   const openFolder = (folder) => {
     const id = folder.fileId;
-    // add to recent activity (most recent first), de-duped
     setRecentActivity((prev) => {
       const next = [folder, ...prev.filter((p) => p.fileId !== folder.fileId)];
       return next.slice(0, 6);
     });
-    // If a search is active, clear it and set filtered files to target folder contents immediately
     if (searchActive) {
       const shown = files.filter((f) => (f.parentId || null) === id);
       setFilteredFiles(shown);
@@ -139,16 +136,6 @@ const Dashboard = () => {
     setNavPos(newHist.length - 1);
   };
 
-  const goUp = () => {
-    if (!currentFolderId) return;
-    const current = files.find((f) => f.fileId === currentFolderId);
-    const parentId = current ? current.parentId || null : null;
-    setCurrentFolderId(parentId);
-    const newHist = navHistory.slice(0, navPos + 1);
-    newHist.push(parentId);
-    setNavHistory(newHist);
-    setNavPos(newHist.length - 1);
-  };
 
   const username = localStorage.getItem("username"); 
 
@@ -341,13 +328,11 @@ const Dashboard = () => {
     console.log(file);
     try {
       if (!file) return;
-      // record in recent activity
       setRecentActivity((prev) => {
         const next = [file, ...prev.filter((p) => p.fileId !== file.fileId)];
         return next.slice(0, 6);
       });
       if (file.type === 'folder') {
-        // request the backend endpoint that streams a zip
         const url = `https://api.filecloud.azaken.com/files/${file.fileId}/download`;
         window.open(url, '_blank');
         return;
@@ -370,7 +355,6 @@ const Dashboard = () => {
     for (const it of items) {
       if (it.type !== 'folder') total += Number(it.fileSize || 0);
     }
-    // recent: sort by uploadedAt desc, pick top 6
     const recent = items.slice().sort((a,b)=>{
       const ta = a.uploadedAt ? new Date(a.uploadedAt).getTime() : 0;
       const tb = b.uploadedAt ? new Date(b.uploadedAt).getTime() : 0;
@@ -384,7 +368,6 @@ const Dashboard = () => {
 
   const { totalBytes, recentFiles } = computeTotalsAndRecent(files);
 
-  // merge server-side uploaded recents with client-side recentActivity (interaction-based)
   const mergedRecentFiles = (() => {
     const seen = new Set();
     const out = [];
@@ -404,7 +387,6 @@ const Dashboard = () => {
   })();
 
   const computeTypeBreakdown = (items) => {
-    // Group extensions into user-friendly categories
     const categories = {
       Images: new Set(['jpg','jpeg','png','gif','svg','webp','heic']),
       Video: new Set(['mp4','mov','mkv','avi','webm']),
@@ -441,7 +423,6 @@ const Dashboard = () => {
       if (!found) out.Other += Number(it.fileSize || 0);
     }
 
-    // Convert to array for deterministic ordering
     return [
       { key: 'Images', bytes: out.Images },
       { key: 'Video', bytes: out.Video },
@@ -476,7 +457,6 @@ const Dashboard = () => {
         </div>
 
         <div className="flex-1">
-        {/* Centered content container so SearchBar and files grid align */}
         <div className="w-full max-w-[1200px] mx-auto">
         <div className="flex items-center justify-center mb-6 gap-4">
           <div className="flex-1 flex items-center justify-center w-screen">
@@ -484,7 +464,6 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Mobile-only: render InfoPanel as its own row directly below the search bar */}
         <div className="block lg:hidden mb-4">
           <InfoPanel totalBytes={totalBytes} recentFiles={mergedRecentFiles} typeBreakdown={typeBreakdown} largestFiles={largestFiles} onDownload={handleDownload} onDelete={handleDelete} />
         </div>
@@ -523,7 +502,6 @@ const Dashboard = () => {
           }}
             />
 
-            {/* Mobile-only Recent/Top tabs shown when at home (no current folder) */}
             {currentFolderId === null && (
               <div className="block lg:hidden mt-3">
                 <div className="flex items-center justify-between mb-2">
@@ -560,7 +538,6 @@ const Dashboard = () => {
                   </div>
                 </div>
 
-                {/* Mobile tab content respects viewMode (grid/list) */}
                 <div>
                   {mobileFilesTab === 'recent' && (
                     <div>
@@ -624,7 +601,6 @@ const Dashboard = () => {
             >
               <FaList className="w-5 h-5" />
             </button>
-            {/* Info button removed - storage stats are shown inline on mobile */}
           </div>
         </div>
 
@@ -654,10 +630,8 @@ const Dashboard = () => {
           </div>
         )}
 
-        {/* mobile inline InfoPanel removed — mobile shows inline InfoPanel above files list */}
 
   {viewMode === 'grid' ? (
-          // On mobile home we render mobile tabs above; hide the main listing there when mobileFilesTab isn't 'home' to avoid duplication
           <div className={`${currentFolderId === null && mobileFilesTab !== 'home' ? 'hidden sm:flex' : 'flex'} flex-col gap-4 sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5`}>
           {(() => {
             const shown = searchActive ? _filteredFiles : files.filter((f) => (f.parentId || null) === currentFolderId);

@@ -27,7 +27,6 @@ const FileIcon = ({ fileName, isFolder = false, size = 48 }) => {
 
   const px = typeof size === 'number' ? `${size}px` : size;
 
-  // container ensures consistent visual size; inner uses object-contain
   const containerStyle = { width: px, height: px, display: 'inline-block' };
   const innerStyle = { width: '100%', height: '100%', objectFit: 'contain', display: 'block' };
 

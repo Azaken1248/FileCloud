@@ -10,7 +10,6 @@ const SearchBar = ({ files, setFilteredFiles, setIsUploading, setSearchActive, s
     };
   }, []);
 
-  // when parent requests a reset (increment signal), clear local input
   useEffect(() => {
     if (typeof searchResetSignal !== 'undefined') {
       setSearchQuery("");
