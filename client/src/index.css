@@ -32,8 +32,9 @@ html, body, #root {
 
 
 @media (max-width: 640px) {
-	.clamp-ch-18 {
-		max-width: 18ch;
-	}
+}
+
+.clamp-ch-18 {
+	max-width: 18ch;
 }
 

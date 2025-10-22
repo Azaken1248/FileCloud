@@ -72,13 +72,13 @@ const FileCard = ({ file, onDelete, onDownload }) => {
       )}
 
       <div className="flex flex-col items-center space-y-4">
-        <div className="text-center w-full min-w-0 overflow-hidden">
+        <div className="text-center min-w-0 overflow-hidden w-auto">
           <div className="flex justify-center mb-3 h-[76px] items-center">
             <FileIcon fileName={file.fileName} />
           </div>
-          <h3 className="text-sm sm:text-lg font-semibold truncate text-center w-full clamp-ch-18">{file.fileName}</h3>
-          <p className="text-sm text-gray-300 truncate text-center">{formatFileSize(file.fileSize)}</p>
-          <p className="text-xs text-gray-400 text-center">{formatTimestamp(file.uploadedAt)}</p>
+          <h3 className="text-sm sm:text-lg font-semibold truncate text-center block mx-auto clamp-ch-18">{file.fileName}</h3>
+          <p className="text-sm text-gray-300 truncate text-center block mx-auto clamp-ch-18">{formatFileSize(file.fileSize)}</p>
+          <p className="text-xs text-gray-400 text-center block mx-auto clamp-ch-18">{formatTimestamp(file.uploadedAt)}</p>
         </div>
 
         <div className="flex space-x-3 mt-4">
