@@ -11,8 +11,13 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
-
-app.use(cors());
+const corsOptions = {
+  origin: 'https://filecloud.azaken.com', 
+  methods: ['GET', 'POST', 'DELETE', 'OPTIONS'], 
+  allowedHeaders: ['Content-Type', 'Authorization'], 
+  optionsSuccessStatus: 200 
+};
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 app.use(async (_req, res, next) => {
