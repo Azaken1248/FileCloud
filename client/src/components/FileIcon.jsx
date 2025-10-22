@@ -26,17 +26,24 @@ const FileIcon = ({ fileName, isFolder = false, size = 48 }) => {
   }, [fileName, isFolder]);
 
   const px = typeof size === 'number' ? `${size}px` : size;
-  const className = `inline-block`;
+
+  // container ensures consistent visual size; inner uses object-contain
+  const containerStyle = { width: px, height: px, display: 'inline-block' };
+  const innerStyle = { width: '100%', height: '100%', objectFit: 'contain', display: 'block' };
 
   if (!Icon) {
     return isFolder ? (
-      <FaFolder className={className} style={{ width: px, height: px }} />
+      <span style={containerStyle}>
+        <FaFolder style={innerStyle} />
+      </span>
     ) : (
-      <FaFileAlt className={className} style={{ width: px, height: px }} />
+      <span style={containerStyle}>
+        <FaFileAlt style={innerStyle} />
+      </span>
     );
   }
 
-  return <img src={Icon} alt={`${fileName} icon`} style={{ width: px, height: px }} className={className} />;
+  return <span style={containerStyle}><img src={Icon} alt={`${fileName} icon`} style={innerStyle} /></span>;
 };
 
 export default FileIcon;

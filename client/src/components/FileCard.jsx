@@ -63,7 +63,7 @@ const FileCard = ({ file, onDelete, onDownload }) => {
 
   return (
     <div
-      className="bg-transparent text-gray-100 rounded-lg border-2 border-blue-300 p-4 w-full sm:max-w-md hover:border-blue-400 hover:bg-blue-300/25 hover:scale-105 transform transition-all duration-200 ease-in-out relative overflow-hidden"
+      className="bg-transparent text-gray-100 rounded-lg border-2 border-blue-300 p-4 w-full hover:border-blue-400 hover:bg-blue-300/25 hover:scale-105 transform transition-all duration-200 ease-in-out relative overflow-hidden"
       title={file.fileName}
     >
       {loading && (
@@ -73,11 +73,11 @@ const FileCard = ({ file, onDelete, onDownload }) => {
       )}
 
       <div className="flex flex-col items-center space-y-4">
-        <div className="text-center w-full min-w-0">
+        <div className="text-center w-full min-w-0 overflow-hidden">
           <div className="flex justify-center mb-3 h-[76px] items-center">
             <FileIcon fileName={file.fileName} />
           </div>
-          <h3 className="text-sm sm:text-l font-semibold truncate w-full break-all">{file.fileName}</h3>
+          <h3 className="text-sm sm:text-l font-semibold truncate w-full clamp-ch-18">{file.fileName}</h3>
           <p className="text-sm text-gray-300 truncate">{formatFileSize(file.fileSize)}</p>
           <p className="text-xs text-gray-400">{formatTimestamp(file.uploadedAt)}</p>
         </div>

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import FileIcon from "./FileIcon";
 import Loader from "./Loader";
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaDownload } from "react-icons/fa";
 
-const FolderCard = ({ folder, onOpen, onDelete }) => {
+const FolderCard = ({ folder, onOpen, onDelete, onDownload }) => {
   const [deleting, setDeleting] = useState(false);
 
   const formatTimestamp = (iso) => {
@@ -68,14 +68,25 @@ const FolderCard = ({ folder, onOpen, onDelete }) => {
           <p className="text-xs text-gray-400">{formatTimestamp(folder.uploadedAt)}</p>
         </div>
         <div className="flex justify-center mt-2">
-          <button
-            onClick={handleDelete}
-            className="w-10 h-10 rounded-md text-red-400 hover:text-red-300 focus:outline-none focus:ring-2 focus:ring-red-500 border border-red-400 flex items-center justify-center transition-colors duration-150"
-            aria-label={`Delete folder ${folder.fileName}`}
-            title="Delete folder"
-          >
-            <FaTrash className="text-base" />
-          </button>
+          <div className="flex space-x-3">
+            <button
+              onClick={(e) => { e.stopPropagation(); if (onDownload) onDownload(folder); }}
+              className="w-10 h-10 rounded-md text-blue-300 hover:text-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-300 border border-blue-300 flex items-center justify-center transition-colors duration-150"
+              aria-label={`Download folder ${folder.fileName}`}
+              title="Download folder"
+            >
+              <FaDownload className="text-base" />
+            </button>
+
+            <button
+              onClick={handleDelete}
+              className="w-10 h-10 rounded-md text-red-400 hover:text-red-300 focus:outline-none focus:ring-2 focus:ring-red-500 border border-red-400 flex items-center justify-center transition-colors duration-150"
+              aria-label={`Delete folder ${folder.fileName}`}
+              title="Delete folder"
+            >
+              <FaTrash className="text-base" />
+            </button>
+          </div>
         </div>
       </div>
     </div>

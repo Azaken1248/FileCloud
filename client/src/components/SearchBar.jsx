@@ -53,7 +53,7 @@ const SearchBar = ({ files, setFilteredFiles, setIsUploading, setSearchActive, s
   };
 
   return (
-    <div className="flex items-center justify-between bg-gray-700 text-gray-100 rounded-xl shadow-md p-4 mx-auto my-4 sm:w-[85%] w-[95%]">
+    <div className="flex items-center justify-between bg-gray-700 text-gray-100 rounded-xl shadow-md p-4 mx-auto my-4 w-full sm:w-[92%] md:w-[85%] lg:w-[75%] xl:w-[70%] max-w-[1200px]">
       <input
         type="text"
         placeholder="Search files..."

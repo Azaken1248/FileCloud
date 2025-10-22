@@ -573,15 +573,6 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
           >
             Upload Files
           </button>
-
-          <button
-            type="button"
-            className="inline-flex items-center justify-center bg-transparent text-green-500 hover:text-green-400 text-sm sm:text-base px-3 py-3 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500/25"
-            onClick={() => setShowFolderModal(true)}
-            aria-label="Create Folder"
-          >
-            + New Folder
-          </button>
         </div>
       )}
 
