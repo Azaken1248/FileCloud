@@ -5,8 +5,11 @@ import FileCard from "../components/FileCard";
 import Breadcrumbs from "../components/Breadcrumbs";
 import FolderCard from "../components/FolderCard";
 import SearchBar from "../components/SearchBar";
+import ListRow from "../components/ListRow";
+import { FaThLarge, FaList } from 'react-icons/fa';
 import UploadFiles from "../components/UploadFiles";
 import Loader from "../components/Loader";
+import InfoPanel from "../components/InfoPanel";
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -16,15 +19,20 @@ const Dashboard = () => {
   const [currentFolderId, setCurrentFolderId] = useState(null);
   const [searchResetSignal, setSearchResetSignal] = useState(0);
   const [isUploading, setIsUploading] = useState(false);
+  const [viewMode, setViewMode] = useState('grid');
+  const [mobileFilesTab, setMobileFilesTab] = useState('recent');
   const [navHistory, setNavHistory] = useState([null]);
   const [navPos, setNavPos] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null); 
   const [previewFile, setPreviewFile] = useState(null); 
+  const [recentActivity, setRecentActivity] = useState([]);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
+  // mobile Info is always visible now; no toggle needed
 
   const handleUploadSuccess = (newFiles) => {
     console.log("Upload success response:", newFiles);
@@ -112,6 +120,11 @@ const Dashboard = () => {
 
   const openFolder = (folder) => {
     const id = folder.fileId;
+    // add to recent activity (most recent first), de-duped
+    setRecentActivity((prev) => {
+      const next = [folder, ...prev.filter((p) => p.fileId !== folder.fileId)];
+      return next.slice(0, 6);
+    });
     // If a search is active, clear it and set filtered files to target folder contents immediately
     if (searchActive) {
       const shown = files.filter((f) => (f.parentId || null) === id);
@@ -326,27 +339,154 @@ const Dashboard = () => {
 
   const handleDownload = async (file) => {
     console.log(file);
+    try {
+      if (!file) return;
+      // record in recent activity
+      setRecentActivity((prev) => {
+        const next = [file, ...prev.filter((p) => p.fileId !== file.fileId)];
+        return next.slice(0, 6);
+      });
+      if (file.type === 'folder') {
+        // request the backend endpoint that streams a zip
+        const url = `https://api.filecloud.azaken.com/files/${file.fileId}/download`;
+        window.open(url, '_blank');
+        return;
+      }
 
-    if (file && file.fileUrl) {
-      const fileUrl = file.fileUrl;
-  
-      window.open(fileUrl, "_blank");
-    } else {
+      if (file && file.fileUrl) {
+        const fileUrl = file.fileUrl;
+        window.open(fileUrl, "_blank");
+        return;
+      }
+
       console.error("Invalid file URL");
+    } catch (err) {
+      console.error('Download error:', err);
     }
+  };
+
+  const computeTotalsAndRecent = (items) => {
+    let total = 0;
+    for (const it of items) {
+      if (it.type !== 'folder') total += Number(it.fileSize || 0);
+    }
+    // recent: sort by uploadedAt desc, pick top 6
+    const recent = items.slice().sort((a,b)=>{
+      const ta = a.uploadedAt ? new Date(a.uploadedAt).getTime() : 0;
+      const tb = b.uploadedAt ? new Date(b.uploadedAt).getTime() : 0;
+      return tb - ta;
+    }).slice(0,6);
+
+    return { totalBytes: total, recentFiles: recent };
   };
 
   console.log(files);
 
+  const { totalBytes, recentFiles } = computeTotalsAndRecent(files);
+
+  // merge server-side uploaded recents with client-side recentActivity (interaction-based)
+  const mergedRecentFiles = (() => {
+    const seen = new Set();
+    const out = [];
+    for (const it of recentActivity) {
+      if (it && it.fileId && !seen.has(it.fileId)) {
+        out.push(it);
+        seen.add(it.fileId);
+      }
+    }
+    for (const it of recentFiles) {
+      if (it && it.fileId && !seen.has(it.fileId)) {
+        out.push(it);
+        seen.add(it.fileId);
+      }
+    }
+    return out.slice(0, 6);
+  })();
+
+  const computeTypeBreakdown = (items) => {
+    // Group extensions into user-friendly categories
+    const categories = {
+      Images: new Set(['jpg','jpeg','png','gif','svg','webp','heic']),
+      Video: new Set(['mp4','mov','mkv','avi','webm']),
+      Audio: new Set(['mp3','wav','flac','m4a','aac']),
+      Documents: new Set(['pdf','doc','docx','xls','xlsx','ppt','pptx','txt','csv','md']),
+      Archives: new Set(['zip','rar','7z','tar','gz']),
+      Osu: new Set(['osz','osu','osk','osr','osb']),
+      Code: new Set(['js','ts','py','java','rb','go','cpp','c','h','cs','php']),
+    };
+
+    const out = {
+      Images: 0,
+      Video: 0,
+      Audio: 0,
+      Documents: 0,
+      Archives: 0,
+      Osu: 0,
+      Code: 0,
+      Other: 0,
+    };
+
+    for (const it of items) {
+      if (it.type === 'folder') continue;
+      const parts = (it.fileName || '').split('.');
+      const ext = parts.length > 1 ? parts.pop().toLowerCase() : 'unknown';
+      let found = false;
+      for (const [cat, set] of Object.entries(categories)) {
+        if (set.has(ext)) {
+          out[cat] += Number(it.fileSize || 0);
+          found = true;
+          break;
+        }
+      }
+      if (!found) out.Other += Number(it.fileSize || 0);
+    }
+
+    // Convert to array for deterministic ordering
+    return [
+      { key: 'Images', bytes: out.Images },
+      { key: 'Video', bytes: out.Video },
+      { key: 'Audio', bytes: out.Audio },
+      { key: 'Documents', bytes: out.Documents },
+      { key: 'Archives', bytes: out.Archives },
+      { key: 'Osu', bytes: out.Osu },
+      { key: 'Code', bytes: out.Code },
+      { key: 'Other', bytes: out.Other },
+    ];
+  };
+
+  const computeLargestFiles = (items, count = 5) => {
+    const filesOnly = items.filter((i) => i.type !== 'folder');
+    filesOnly.sort((a, b) => (Number(b.fileSize || 0) - Number(a.fileSize || 0)));
+    return filesOnly.slice(0, count);
+  };
+
+  const typeBreakdown = computeTypeBreakdown(files);
+  const largestFiles = computeLargestFiles(files, 5);
+
   return (
-    <div className="relative">
+    <div className="relative overflow-x-hidden">
       <Navbar onToggleSidebar={toggleSidebar} />
 
       <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
 
-  <div className={`transition-all duration-300 ${isSidebarOpen ? "lg:ml-64" : ""} min-h-screen bg-gray-800 text-gray-100 p-6`}>
+  <div className={`transition-all duration-300 ${isSidebarOpen ? "lg:ml-64" : ""} min-h-screen bg-gray-800 text-gray-100 p-4 sm:p-6 overflow-x-hidden`}>
+      <div className="lg:flex lg:gap-6">
+        <div className="hidden lg:block w-72 lg:mr-6 self-start lg:sticky lg:top-5">
+          <InfoPanel totalBytes={totalBytes} recentFiles={mergedRecentFiles} typeBreakdown={typeBreakdown} largestFiles={largestFiles} onDownload={handleDownload} onDelete={handleDelete} />
+        </div>
+
+        <div className="flex-1">
+        {/* Centered content container so SearchBar and files grid align */}
+        <div className="w-full max-w-[1200px] mx-auto">
         <div className="flex items-center justify-center mb-6 gap-4">
-          <SearchBar setFilteredFiles={setFilteredFiles} files={files} setIsUploading={setIsUploading} setSearchActive={setSearchActive} searchResetSignal={searchResetSignal} />
+          <div className="flex-1 flex items-center justify-center w-screen">
+            <SearchBar setFilteredFiles={setFilteredFiles} files={files} setIsUploading={setIsUploading} setSearchActive={setSearchActive} searchResetSignal={searchResetSignal} />
+          </div>
+        </div>
+
+        {/* Mobile-only: render InfoPanel as its own row directly below the search bar */}
+        <div className="block lg:hidden mb-4">
+          <InfoPanel totalBytes={totalBytes} recentFiles={mergedRecentFiles} typeBreakdown={typeBreakdown} largestFiles={largestFiles} onDownload={handleDownload} onDelete={handleDelete} />
         </div>
 
         {isUploading && (
@@ -355,7 +495,9 @@ const Dashboard = () => {
           </div>
         )}
 
-        <Breadcrumbs
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex-1">
+            <Breadcrumbs
           files={files}
           currentFolderId={currentFolderId}
           history={navHistory}
@@ -379,7 +521,112 @@ const Dashboard = () => {
             setNavPos(newHist.length - 1);
             setCurrentFolderId(id);
           }}
-        />
+            />
+
+            {/* Mobile-only Recent/Top tabs shown when at home (no current folder) */}
+            {currentFolderId === null && (
+              <div className="block lg:hidden mt-3">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex-1 flex items-center gap-2">
+                    <button
+                      onClick={() => setMobileFilesTab('home')}
+                      className={`py-2 px-3 rounded ${mobileFilesTab === 'home' ? 'bg-gray-700 text-white' : 'bg-transparent text-gray-300'}`}
+                    >Home</button>
+                    <button
+                      onClick={() => setMobileFilesTab('recent')}
+                      className={`py-2 px-3 rounded ${mobileFilesTab === 'recent' ? 'bg-gray-700 text-white' : 'bg-transparent text-gray-300'}`}
+                    >Recent</button>
+                    <button
+                      onClick={() => setMobileFilesTab('top')}
+                      className={`py-2 px-3 rounded ${mobileFilesTab === 'top' ? 'bg-gray-700 text-white' : 'bg-transparent text-gray-300'}`}
+                    >Top</button>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => setViewMode('grid')}
+                      aria-label="Grid view"
+                      className={`p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-300 ${viewMode === 'grid' ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700/20'}`}
+                    >
+                      <FaThLarge className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => setViewMode('list')}
+                      aria-label="List view"
+                      className={`p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-300 ${viewMode === 'list' ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700/20'}`}
+                    >
+                      <FaList className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Mobile tab content respects viewMode (grid/list) */}
+                <div>
+                  {mobileFilesTab === 'recent' && (
+                    <div>
+                      {viewMode === 'grid' ? (
+                        <div className="grid grid-cols-2 gap-3">
+                          {mergedRecentFiles.map((f) => (
+                            <FileCard key={f.fileId} file={f} onDelete={() => handleDelete(f.fileId)} onDownload={() => handleDownload(f)} />
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="space-y-2">
+                          {mergedRecentFiles.map((f) => (
+                            <ListRow key={f.fileId} item={f} onDownload={() => handleDownload(f)} onDelete={() => handleDelete(f.fileId)} />
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {mobileFilesTab === 'top' && (
+                    <div>
+                      {viewMode === 'grid' ? (
+                        <div className="grid grid-cols-2 gap-3">
+                          {largestFiles.map((f) => (
+                            <FileCard key={f.fileId} file={f} onDelete={() => handleDelete(f.fileId)} onDownload={() => handleDownload(f)} />
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="space-y-2">
+                          {largestFiles.map((f) => (
+                            <ListRow key={f.fileId} item={f} onDownload={() => handleDownload(f)} onDelete={() => handleDelete(f.fileId)} />
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {mobileFilesTab === 'home' && (
+                    <div className="space-y-2">
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+
+    <div className="hidden lg:flex items-center space-x-2 ml-4">
+            <button
+              onClick={() => setViewMode('grid')}
+              aria-label="Grid view"
+              title="Grid view"
+              className={`p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-300 ${viewMode === 'grid' ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700/20'}`}
+            >
+              <FaThLarge className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => setViewMode('list')}
+              aria-label="List view"
+              title="List view"
+              className={`p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-300 ${viewMode === 'list' ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700/20'}`}
+            >
+              <FaList className="w-5 h-5" />
+            </button>
+            {/* Info button removed - storage stats are shown inline on mobile */}
+          </div>
+        </div>
 
         {loading && (
             <div className="flex justify-center min-h-screen bg-gray-800">
@@ -407,7 +654,11 @@ const Dashboard = () => {
           </div>
         )}
 
-        <div className="flex flex-col gap-4 sm:grid sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-7">
+        {/* mobile inline InfoPanel removed — mobile shows inline InfoPanel above files list */}
+
+  {viewMode === 'grid' ? (
+          // On mobile home we render mobile tabs above; hide the main listing there when mobileFilesTab isn't 'home' to avoid duplication
+          <div className={`${currentFolderId === null && mobileFilesTab !== 'home' ? 'hidden sm:flex' : 'flex'} flex-col gap-4 sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5`}>
           {(() => {
             const shown = searchActive ? _filteredFiles : files.filter((f) => (f.parentId || null) === currentFolderId);
             const folders = shown.filter((f) => f.type === "folder");
@@ -437,9 +688,40 @@ const Dashboard = () => {
               </>
             );
           })()}
+            </div>
+          ) : (
+            <div className={`${currentFolderId === null && mobileFilesTab !== 'home' ? 'hidden sm:block' : 'block'} space-y-2`}>
+            {(() => {
+              const shown = searchActive ? _filteredFiles : files.filter((f) => (f.parentId || null) === currentFolderId);
+              const folders = shown.filter((f) => f.type === "folder");
+              const plainFiles = shown.filter((f) => f.type !== "folder");
+
+              if (folders.length === 0 && plainFiles.length === 0) {
+                return <div className="text-center text-gray-500">No files available</div>;
+              }
+
+              return (
+                <>
+                      {(() => {
+                        const sizeMap = computeFolderSizes(files);
+                        return folders.map((folder) => (
+                          <ListRow key={folder.fileId} item={{ ...folder, folderSize: sizeMap.get(folder.fileId) || 0 }} onOpen={openFolder} onDelete={handleDeleteFolder} />
+                        ));
+                      })()}
+
+                  {plainFiles.map((file) => (
+                    <ListRow key={file.fileId} item={file} onDownload={() => handleDownload(file)} onDelete={() => handleDelete(file.fileId)} />
+                  ))}
+                </>
+              );
+            })()}
+            </div>
+          )}
+          </div>
         </div>
       </div>
     </div>
+  </div>
   );
 };
 
