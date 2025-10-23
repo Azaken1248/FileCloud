@@ -7,30 +7,32 @@ export default {
   theme: {
     extend: {
       colors: {
-        gray: {
-          50: '#f8fafc',
-          100: '#e6eef6',
-          200: '#cbd5e1',
-          300: '#94a3b8',
-          400: '#64748b',
-          500: '#475569',
-          600: '#334155',
-          700: '#1f2937',
-          800: '#0f1724',
-          900: '#0b1220'
-        },
-        green: {
-          50: '#ecfdf5',
-          100: '#dcfce7',
-          200: '#bbf7d0',
-          300: '#86efac',
-          400: '#4ade80',
-          500: '#22c55e',
-          600: '#16a34a',
-          700: '#15803d',
-          800: '#166534',
-          900: '#14532d'
-        }
+        rosewater: '#f5e0dc',
+        flamingo: '#f2cdcd',
+        pink: '#f5c2e7',
+        mauve: '#cba6f7',
+        red: '#f38ba8',
+        maroon: '#eba0ac',
+        peach: '#fab387',
+        yellow: '#f9e2af',
+        green: '#a6e3a1',
+        teal: '#94e2d5',
+        sky: '#89dceb',
+        sapphire: '#74c7ec',
+        blue: '#89b4fa',
+        lavender: '#b4befe',
+        text: '#cdd6f4',
+        subtext1: '#bac2de',
+        subtext0: '#a6adc8',
+        overlay2: '#9399b2',
+        overlay1: '#7f849c',
+        overlay0: '#6c7086',
+        surface2: '#585b70',
+        surface1: '#45475a',
+        surface0: '#313244',
+        base: '#1e1e2e',
+        mantle: '#181825',
+        crust: '#11111b'
       }
     },
   },

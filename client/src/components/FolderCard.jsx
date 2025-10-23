@@ -48,12 +48,12 @@ const FolderCard = ({ folder, onOpen, onDelete, onDownload }) => {
 
   return (
     <div
-      className="bg-transparent text-gray-100 rounded-lg border-2 border-blue-300 p-3 w-full sm:max-w-sm hover:border-blue-400 hover:bg-blue-300/25 hover:scale-105 transform transition-all duration-200 ease-in-out relative overflow-hidden cursor-pointer"
+      className=" text-text rounded-lg bg-mantle border-2 border-pink p-3 w-full sm:max-w-sm hover:border-pink hover:bg-surface0 hover:scale-105 transform transition-all duration-200 ease-in-out relative overflow-hidden cursor-pointer"
       title={folder.fileName}
       onClick={() => { if (!deleting) onOpen(folder); }}
     >
       {deleting && (
-        <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-40 rounded-xl z-10">
+        <div className="absolute inset-0 flex justify-center items-center bg-base bg-opacity-70 rounded-xl z-10">
           <Loader />
         </div>
       )}
@@ -63,28 +63,28 @@ const FolderCard = ({ folder, onOpen, onDelete, onDownload }) => {
           <div className="flex justify-center mb-3 h-[76px] items-center">
             <FileIcon fileName={folder.fileName} isFolder={true} />
           </div>
-          <h3 className="text-sm sm:text-l font-semibold truncate w-full break-all">{folder.fileName}</h3>
-          <p className="text-sm text-gray-300">{formatFileSize(folder.folderSize || 0)}</p>
-          <p className="text-xs text-gray-400">{formatTimestamp(folder.uploadedAt)}</p>
+          <h3 className="text-sm sm:text-l font-semibold truncate w-full break-all text-text">{folder.fileName}</h3>
+          <p className="text-sm text-subtext1">{formatFileSize(folder.folderSize || 0)}</p>
+          <p className="text-xs text-subtext0">{formatTimestamp(folder.uploadedAt)}</p>
         </div>
         <div className="flex justify-center mt-2">
           <div className="flex space-x-3">
             <button
               onClick={(e) => { e.stopPropagation(); if (onDownload) onDownload(folder); }}
-              className="w-10 h-10 rounded-md text-blue-300 hover:text-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-300 border border-blue-300 flex items-center justify-center transition-colors duration-150"
+              className="w-10 h-10 rounded-md text-blue hover:text-sapphire focus:outline-none focus:ring-2 focus:ring-blue border-2 border-blue hover:bg-blue/10 flex items-center justify-center transition-colors duration-150"
               aria-label={`Download folder ${folder.fileName}`}
               title="Download folder"
             >
-              <FaDownload className="text-base" />
+              <FaDownload className="text-sapphire" />
             </button>
 
             <button
               onClick={handleDelete}
-              className="w-10 h-10 rounded-md text-red-400 hover:text-red-300 focus:outline-none focus:ring-2 focus:ring-red-500 border border-red-400 flex items-center justify-center transition-colors duration-150"
+              className="w-10 h-10 rounded-md text-red hover:text-maroon focus:outline-none focus:ring-2 focus:ring-red border-2 border-red hover:bg-red/10 flex items-center justify-center transition-colors duration-150"
               aria-label={`Delete folder ${folder.fileName}`}
               title="Delete folder"
             >
-              <FaTrash className="text-base" />
+              <FaTrash className="text-red" />
             </button>
           </div>
         </div>

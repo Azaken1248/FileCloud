@@ -20,7 +20,7 @@ const Breadcrumbs = ({ files = [], currentFolderId = null, history = [null], pos
         <button
           onClick={onBack}
           disabled={pos <= 0}
-          className="px-3 py-2 border rounded text-sm disabled:opacity-50 touch-manipulation"
+          className="px-3 py-2 bg-surface0 border border-surface1 text-text rounded text-sm hover:bg-surface1 disabled:opacity-50 touch-manipulation"
           aria-label="Back"
         >
           <FaArrowLeft />
@@ -28,7 +28,7 @@ const Breadcrumbs = ({ files = [], currentFolderId = null, history = [null], pos
         <button
           onClick={onForward}
           disabled={pos >= history.length - 1}
-          className="px-3 py-2 border rounded text-sm disabled:opacity-50 touch-manipulation"
+          className="px-3 py-2 bg-surface0 border border-surface1 text-text rounded text-sm hover:bg-surface1 disabled:opacity-50 touch-manipulation"
           aria-label="Forward"
         >
           <FaArrowRight />
@@ -36,19 +36,27 @@ const Breadcrumbs = ({ files = [], currentFolderId = null, history = [null], pos
       </div>
 
       <nav className="flex-1 min-w-0 mt-2 sm:mt-0">
-        <div className="flex items-center gap-2 text-sm text-gray-300 overflow-x-auto whitespace-nowrap">
-          {path.map((seg, idx) => (
-            <span key={seg.id ?? "home"} className="flex items-center gap-2 whitespace-nowrap">
-              <button
-                onClick={() => onGoTo(seg.id)}
-                className="hover:underline truncate max-w-[16rem] text-sm"
-                title={seg.name}
-              >
-                {seg.name}
-              </button>
-              {idx < path.length - 1 && <span className="opacity-60">/</span>}
-            </span>
-          ))}
+        <div className="flex items-center gap-2 text-sm text-subtext0 overflow-x-auto whitespace-nowrap">
+          {path.map((seg, idx) => {
+            const isCurrent = idx === path.length - 1;
+            return (
+              <span key={seg.id ?? "home"} className="flex items-center gap-2 whitespace-nowrap">
+                <button
+                  onClick={() => onGoTo(seg.id)}
+                  disabled={isCurrent}
+                  className={`truncate max-w-[16rem] text-sm ${
+                    isCurrent
+                      ? 'text-text font-medium'
+                      : 'hover:text-mauve hover:underline' 
+                  }`}
+                  title={seg.name}
+                >
+                  {seg.name}
+                </button>
+                {idx < path.length - 1 && <span className="opacity-60">/</span>}
+              </span>
+            );
+          })}
         </div>
       </nav>
     </div>

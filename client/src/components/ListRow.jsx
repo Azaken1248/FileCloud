@@ -47,32 +47,32 @@ const ListRow = ({ item, onOpen, onDownload, onDelete }) => {
   };
 
   return (
-    <div onClick={handleRowClick} className="relative flex items-center gap-4 p-3 hover:bg-gray-700 border-b border-blue-300 last:border-b-0 cursor-pointer">
-      <div className="w-8 flex items-center justify-center">
-        <FileIcon fileName={item.fileName} isFolder={isFolder} />
+    <div onClick={handleRowClick} className={`relative flex items-center gap-4 p-3 hover:bg-surface0 border-b border-surface1 hover:border-surface1 first:rounded-t-md first:border-t first:border-surface1 last:rounded-b-md last:border-b-0 ${isFolder ? 'cursor-pointer' : 'cursor-default'}`}>
+      <div className="w-8 flex-shrink-0 flex items-center justify-center">
+        <FileIcon fileName={item.fileName} isFolder={isFolder} size={24} />
       </div>
 
       <div className="flex-1 min-w-0">
         <div className="flex items-center justify-between">
-          <div className="min-w-0 overflow-hidden clamp-ch-18">
-            <div className="truncate font-semibold">{item.fileName}</div>
+          <div className="min-w-0 overflow-hidden clamp-ch-28">
+            <div className="truncate font-semibold text-text">{item.fileName}</div>
           </div>
-          <div className="text-sm text-gray-300 ml-4">{isFolder ? formatFileSize(item.folderSize) : formatFileSize(item.fileSize)}</div>
+          <div className="text-sm text-subtext1 ml-4 flex-shrink-0">{isFolder ? formatFileSize(item.folderSize) : formatFileSize(item.fileSize)}</div>
         </div>
-          <div className="text-xs text-gray-400 mt-1 flex items-center justify-between">
+          <div className="text-xs text-subtext0 mt-1 flex items-center justify-between">
           <div className="truncate">{formatTimestamp(item.uploadedAt)}</div>
           <div className="flex items-center mobile-tight-actions">
-              <button onClick={(e) => { e.stopPropagation(); onDownload && onDownload(item); }} className="text-blue-300 hover:text-blue-200 p-2 rounded-md mobile-small-action" title="Download">
-                <FaDownload className="w-5 h-5" />
+              <button onClick={(e) => { e.stopPropagation(); onDownload && onDownload(item); }} className="text-blue hover:text-sapphire p-2 rounded-md mobile-small-action" title="Download">
+                <FaDownload className="w-4 h-4" />
               </button>
-            <button onClick={handleDeleteClick} className="text-red-400 hover:text-red-300 p-2 rounded-md mobile-small-action" title="Delete">
-              <FaTrash className="w-5 h-5" />
+            <button onClick={handleDeleteClick} className="text-red hover:text-maroon p-2 rounded-md mobile-small-action" title="Delete">
+              <FaTrash className="w-4 h-4" />
             </button>
           </div>
         </div>
       </div>
       {deleting && (
-        <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-40 z-10">
+        <div className="absolute inset-0 flex justify-center items-center bg-base bg-opacity-70 z-10 rounded">
           <Loader />
         </div>
       )}

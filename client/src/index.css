@@ -6,9 +6,22 @@
 	--ui-darken: 0.86; 
 }
 
+:root {
+	--cat-base: #1e1e2e; 
+	--cat-mantle: #181825; 
+	--cat-crust: #11111b; 
+	--cat-surface0: #313244;
+	--cat-surface1: #45475a;
+	--cat-surface2: #585b70;
+	--cat-text: #cdd6f4;
+	--cat-subtext1: #bac2de;
+}
+
 
 html, body, #root {
-  overflow-x: hidden;
+	overflow-x: hidden;
+	background: var(--cat-base);
+	color: var(--cat-text);
 }
 
 .hide-scrollbar {

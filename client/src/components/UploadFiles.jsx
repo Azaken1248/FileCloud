@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { FaCloudUploadAlt, FaCheckCircle, FaExclamationCircle, FaTrashAlt, FaBan } from "react-icons/fa";
 import FileIcon from "./FileIcon";
-
+import Loader from "./Loader";
 
 const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
   const [files, setFiles] = useState([]);
@@ -61,7 +61,7 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
     setCreatingFolder(true);
     const username = localStorage.getItem("username");
     try {
-  const response = await fetch(`https://api.filecloud.azaken.com/folders`, {
+      const response = await fetch(`https://api.filecloud.azaken.com/folders`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, folderName: newFolderName, parentId: currentFolderId }),
@@ -191,8 +191,8 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
       const xhrs = [];
       xhrRefs.current[folderEntry.id] = xhrs;
 
-  const folderCreatedFolders = [];
-  const uploadPromises = folderEntry.files.map((fileObj, idx) => {
+      const folderCreatedFolders = [];
+      const uploadPromises = folderEntry.files.map((fileObj, idx) => {
         return new Promise((resolve, reject) => {
           const formData = new FormData();
           formData.append('files', fileObj.file);
@@ -255,7 +255,7 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
         });
       });
 
-  const settled = await Promise.allSettled(uploadPromises);
+      const settled = await Promise.allSettled(uploadPromises);
       delete xhrRefs.current[folderEntry.id];
 
       const successful = settled.filter((s) => s.status === 'fulfilled').length;
@@ -265,11 +265,10 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
     };
 
     try {
-  const toUpload = files.slice();
-  const promises = toUpload.map((f) => (f.type === 'folder' ? uploadFolder(f, username) : uploadSingle(f)));
-  const settled = await Promise.allSettled(promises);
-
-     
+      const toUpload = files.slice();
+      const promises = toUpload.map((f) => (f.type === 'folder' ? uploadFolder(f, username) : uploadSingle(f)));
+      const settled = await Promise.allSettled(promises);
+      
       const uploadedItems = [];
       const createdFolderAccumulator = [];
 
@@ -330,9 +329,7 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
       };
 
       for (const f of createdFolderAccumulator) pushUnique(f);
-
       for (const it of uploadedItems) pushUnique(it);
-
       const combined = Array.from(seen.values());
 
       console.log('Upload aggregator createdFolderAccumulator (deduped):', Array.from(seen.values()).filter(x=>x.type==='folder'));
@@ -357,11 +354,10 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
       setUploadError(err.message || "Upload error");
     }
   };
-  
 
   return (
-    <div className="bg-gray-700 text-gray-100 rounded-xl shadow-md p-4 mx-auto w-full max-w-xl">
-      <h3 className="text-lg sm:text-xl font-semibold mb-3 text-center">Upload Files or Create Folder</h3>
+    <div className="bg-surface1 text-text rounded-xl shadow-md p-4 mx-auto w-full max-w-xl border border-surface2">
+      <h3 className="text-lg sm:text-xl font-semibold mb-3 text-center text-subtext1">Upload Files or Create Folder</h3>
 
       <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
@@ -373,9 +369,9 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
               onChange={handleFileChange}
               className="hidden"
             />
-            <span className="inline-flex items-center gap-2 cursor-pointer text-blue-400 hover:text-blue-300 transition duration-200 ease-in-out text-sm sm:text-base px-3 py-2 border border-transparent rounded-md hover:bg-blue-500/5">
-              <FaCloudUploadAlt className="text-2xl sm:text-3xl" />
-              <span className="hidden sm:inline">Choose Files</span>
+            <span className="inline-flex items-center gap-2 cursor-pointer text-sapphire hover:text-sapphire transition duration-200 ease-in-out text-sm sm:text-base px-3 py-2 border border-transparent rounded-md hover:bg-sapphire/10">
+              <FaCloudUploadAlt className="text-sapphire text-2xl sm:text-3xl" />
+              <span className="text-sapphire hidden sm:inline">Choose Files</span>
               <span className="sm:hidden">Files</span>
             </span>
           </label>
@@ -418,9 +414,9 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
               }}
               className="hidden"
             />
-            <span className="inline-flex items-center gap-2 cursor-pointer text-blue-400 hover:text-blue-300 transition duration-200 ease-in-out text-sm sm:text-base px-3 py-2 border border-transparent rounded-md hover:bg-blue-500/5">
-              <FaCloudUploadAlt className="text-2xl sm:text-3xl" />
-              <span className="hidden sm:inline">Choose Folder</span>
+            <span className="inline-flex items-center gap-2 cursor-pointer text-sapphire hover:text-sapphire transition duration-200 ease-in-out text-sm sm:text-base px-3 py-2 border border-transparent rounded-md hover:bg-sapphire/10">
+              <FaCloudUploadAlt className="text-sapphire text-2xl sm:text-3xl" />
+              <span className="text-sapphire hidden sm:inline">Choose Folder</span>
               <span className="sm:hidden">Folder</span>
             </span>
           </label>
@@ -429,31 +425,31 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
         <div className="flex-shrink-0">
           <button
             type="button"
-            className="inline-flex items-center justify-center bg-transparent text-green-300 border border-green-300 hover:text-green-400 text-sm sm:text-base px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-300/25"
+            className="inline-flex items-center justify-center bg-transparent border border-green hover:text-teal text-sm sm:text-base px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green/25 hover:bg-green/10"
             onClick={() => setShowFolderModal(true)}
             aria-label="Create Folder"
           >
-            + New Folder
+            <span className="text-teal">+ New Folder</span>
           </button>
         </div>
       </div>
 
       {showFolderModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-          <div className="bg-gray-700 p-6 rounded-lg shadow-lg w-80 flex flex-col gap-4">
-            <h4 className="text-lg font-semibold text-center">Create New Folder</h4>
+        <div className="fixed inset-0 bg-base bg-opacity-70 flex items-center justify-center z-50">
+          <div className="bg-surface0 p-6 rounded-lg shadow-lg w-80 flex flex-col gap-4 border border-surface1">
+            <h4 className="text-lg font-semibold text-center text-subtext1">Create New Folder</h4>
             <input
               type="text"
               value={newFolderName}
               onChange={e => setNewFolderName(e.target.value)}
               placeholder="Folder name"
-              className="px-3 py-2 rounded border border-gray-600 bg-gray-900 text-gray-100"
+              className="px-3 py-2 rounded border border-surface2 bg-base text-text focus:border-mauve focus:ring-mauve focus:outline-none"
               autoFocus
             />
             <div className="flex gap-2 justify-center">
               <button
                 type="button"
-                className="border-2 border-green-500 text-green-300 px-4 py-1 rounded-lg hover:bg-green-500/10"
+                className="border-2 border-green text-green px-4 py-1 rounded-lg hover:bg-green/10 disabled:opacity-50"
                 onClick={handleCreateFolder}
                 disabled={creatingFolder}
               >
@@ -461,7 +457,7 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
               </button>
               <button
                 type="button"
-                className="border-2 border-gray-500 text-gray-300 px-4 py-1 rounded-lg hover:bg-gray-500/10"
+                className="border-2 border-overlay1 text-subtext1 px-4 py-1 rounded-lg hover:bg-overlay1/10 disabled:opacity-50"
                 onClick={() => { setShowFolderModal(false); setNewFolderName(""); }}
                 disabled={creatingFolder}
               >
@@ -473,14 +469,14 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
       )}
 
       <div className="mb-6">
-        <h4 className="text-lg">Selected Files</h4>
+        <h4 className="text-base text-subtext1">Selected Files/Folders</h4>
         {Array.isArray(files) && files.length > 0 ? (
-          <ul className="space-y-3">
+          <ul className="space-y-3 max-h-60 overflow-y-auto pr-2">
             {files.map((entry) => (
-              <li key={entry.id} className="text-sm text-gray-200 bg-gray-700 p-3 rounded-md flex flex-col">
+              <li key={entry.id} className="text-sm text-text bg-surface0 p-3 rounded-md flex flex-col border border-surface1">
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-3 truncate">
-                    <div className="flex-shrink-0">
+                    <div className="flex-shrink-0 w-5 h-5">
                       <FileIcon fileName={entry.type === 'folder' ? entry.folderName : entry.name} isFolder={entry.type === 'folder'} size={20} />
                     </div>
                     <div className="truncate">{entry.type === 'folder' ? entry.folderName : entry.name}</div>
@@ -489,7 +485,7 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
                     {entry.status !== "uploaded" && (
                       <button
                         onClick={() => removeFile(entry.id)}
-                        className="p-1 rounded text-red-400 hover:text-red-300 focus:outline-none focus:ring-2 focus:ring-red-500"
+                        className="p-1 rounded text-red hover:text-maroon focus:outline-none focus:ring-2 focus:ring-red/50"
                         aria-label={`Remove ${entry.name}`}
                         title="Remove"
                       >
@@ -501,7 +497,7 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
                         onClick={() => {
                           if (xhrRefs.current[entry.id]) xhrRefs.current[entry.id].abort();
                         }}
-                        className="p-1 rounded text-yellow-400 hover:text-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                        className="p-1 rounded text-yellow hover:text-peach focus:outline-none focus:ring-2 focus:ring-yellow/50"
                         aria-label={`Cancel upload for ${entry.name}`}
                         title="Cancel"
                       >
@@ -512,46 +508,42 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
                 </div>
 
                 <div className="mt-3 w-full">
-                  <div className="relative w-full h-2.5 bg-gray-700 rounded-md overflow-hidden">
+                  <div className="relative w-full h-2.5 bg-base rounded-md overflow-hidden border border-surface2">
                     <div
-                      className="absolute left-0 top-0 h-full transition-all duration-300"
+                      className="absolute left-0 top-0 h-full transition-all duration-300 bg-green"
                       style={{
                         width: entry.progress === null ? "100%" : `${entry.progress}%`,
-                        background: `#10B981`,
-                        boxShadow: '0 1px 4px rgba(16,185,129,0.12)'
                       }}
                     />
                   </div>
-                  <div className="mt-2 flex items-center justify-between text-xs text-gray-300">
+                  <div className="mt-2 flex items-center justify-between text-xs text-subtext0">
                     <span className="capitalize truncate max-w-[60%]">{entry.status}</span>
                     <span className="ml-2 w-12 text-right">{entry.progress === null ? "..." : `${entry.progress}%`}</span>
                   </div>
-                  {entry.error && <div className="text-xs text-red-400 mt-1">{entry.error}</div>}
+                  {entry.error && <div className="text-xs text-red mt-1">{entry.error}</div>}
                 </div>
               </li>
             ))}
           </ul>
         ) : (
-          <p className="text-sm text-gray-400">No files selected.</p>
+          <p className="text-sm text-overlay1">No files or folders selected.</p>
         )}
       </div>
 
       {uploading && (
         <div className="mb-6">
-          <p className="text-sm text-gray-300">Uploading...</p>
+          <p className="text-sm text-subtext0">Overall Uploading...</p>
           <div className="relative w-full mt-2">
-            <div className="w-full h-2.5 bg-gray-700 rounded-md overflow-hidden">
+            <div className="w-full h-2.5 bg-base rounded-md overflow-hidden border border-surface2">
               <div
-                className="h-full transition-all duration-300"
+                className="h-full transition-all duration-300 bg-green"
                     style={{
                       width: progress === null ? "100%" : `${progress}%`,
-                      background: `#10B981`,
-                      boxShadow: '0 2px 6px rgba(16,185,129,0.08)'
                     }}
                   />
             </div>
-            <div className="mt-2 flex items-center justify-between text-sm text-gray-300">
-              <div className="truncate">{progress === null ? "Uploading..." : "Upload progress"}</div>
+            <div className="mt-2 flex items-center justify-between text-sm text-subtext0">
+              <div className="truncate">{progress === null ? "Uploading..." : "Progress"}</div>
               <div className="w-12 text-right">{progress === null ? "..." : `${progress}%`}</div>
             </div>
           </div>
@@ -559,27 +551,27 @@ const UploadFiles = ({ onUploadSuccess, currentFolderId = null }) => {
       )}
 
       {uploadError && (
-        <div className="mb-4 p-4 bg-red-600 text-white rounded-md flex items-center space-x-2">
+        <div className="mb-4 p-4 bg-red text-base rounded-md flex items-center space-x-2">
           <FaExclamationCircle />
           <p className="text-sm">{uploadError}</p>
         </div>
       )}
 
-      {!uploading && !uploadError && files.length > 0 && (
+      {!uploading && !uploadError && files.some(f => f.status === 'queued') && (
         <div className="mb-6 flex flex-col sm:flex-row sm:items-center gap-3">
           <button
             onClick={handleUpload}
-            className="flex-1 w-full sm:w-auto border-2 border-blue-500 text-blue-300 py-3 rounded-lg transition duration-300 ease-in-out hover:bg-blue-500/10 hover:text-blue-300"
+            className="flex-1 w-full sm:w-auto border-2 border-blue text-blue py-3 rounded-lg transition duration-300 ease-in-out hover:bg-blue/10 hover:text-sapphire"
           >
-            Upload Files
+            Upload Selected
           </button>
         </div>
       )}
 
-      {uploading === false && progress === 100 && !uploadError && (
-        <div className="p-4 bg-green-600 text-white rounded-md flex items-center space-x-2">
+      {uploading === false && progress === 100 && !uploadError && files.every(f => f.status === 'uploaded' || f.status === 'canceled' || f.status === 'error') && (
+        <div className="p-4 bg-green text-base rounded-md flex items-center space-x-2">
           <FaCheckCircle />
-          <p className="text-sm">Files uploaded successfully!</p>
+          <p className="text-sm">Upload complete!</p>
         </div>
       )}
     </div>

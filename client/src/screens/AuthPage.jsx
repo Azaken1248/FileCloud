@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
 
 const AuthPage = () => {
@@ -10,8 +10,8 @@ const AuthPage = () => {
     password: "",
   });
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false); 
-  const navigate = useNavigate(); 
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const toggleAuthMode = () => {
     setIsLogin(!isLogin);
@@ -26,7 +26,7 @@ const AuthPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); 
+    setLoading(true);
 
     const url = isLogin
       ? "https://api.filecloud.azaken.com/login"
@@ -45,7 +45,7 @@ const AuthPage = () => {
         if (isLogin) {
           localStorage.setItem("token", data.token);
           localStorage.setItem("username", data.username);
-          navigate("/dashboard"); 
+          navigate("/dashboard");
         }
       } else {
         setMessage(data.error || "An error occurred");
@@ -53,28 +53,28 @@ const AuthPage = () => {
     } catch (error) {
       setMessage("An error occurred. Please try again.");
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center">
-  <div className="w-full max-w-md bg-gray-700 text-gray-100 rounded-lg shadow-lg p-8">
-        <h2 className="text-3xl font-bold mb-6 text-center">
+    <div className="min-h-screen bg-gradient-to-br from-crust to-base flex items-center justify-center p-4">
+      <div className="w-full max-w-md bg-mantle text-text rounded-lg shadow-lg p-8 border border-surface1">
+        <h2 className="text-3xl font-bold mb-6 text-center text-subtext1">
           {isLogin ? "Login to Your Account" : "Create an Account"}
         </h2>
         {message && (
           <div
             className={`mb-4 text-center ${
               message.includes("successful")
-                ? "text-green-500"
-                : "text-red-500"
+                ? "text-green"
+                : "text-red"
             }`}
           >
             {message}
           </div>
         )}
-        {loading ? ( 
+        {loading ? (
           <div className="flex justify-center mb-4">
             <Loader />
           </div>
@@ -82,7 +82,7 @@ const AuthPage = () => {
           <form className="space-y-6" onSubmit={handleSubmit}>
             {!isLogin && (
               <div>
-                <label htmlFor="name" className="block text-sm font-medium">
+                <label htmlFor="name" className="block text-sm font-medium text-subtext0">
                   Name
                 </label>
                 <input
@@ -91,12 +91,12 @@ const AuthPage = () => {
                   placeholder="Your Name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full mt-1 px-4 py-2 bg-gray-700 text-gray-100 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full mt-1 px-4 py-2 bg-surface0 text-text rounded-md border border-surface1 focus:outline-none focus:ring-2 focus:ring-mauve focus:border-mauve"
                 />
               </div>
             )}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium">
+              <label htmlFor="email" className="block text-sm font-medium text-subtext0">
                 Email Address
               </label>
               <input
@@ -105,11 +105,11 @@ const AuthPage = () => {
                 placeholder="you@example.com"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="w-full mt-1 px-4 py-2 bg-gray-700 text-gray-100 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full mt-1 px-4 py-2 bg-surface0 text-text rounded-md border border-surface1 focus:outline-none focus:ring-2 focus:ring-mauve focus:border-mauve"
               />
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium">
+              <label htmlFor="password" className="block text-sm font-medium text-subtext0">
                 Password
               </label>
               <input
@@ -118,12 +118,12 @@ const AuthPage = () => {
                 placeholder="Enter your password"
                 value={formData.password}
                 onChange={handleInputChange}
-                className="w-full mt-1 px-4 py-2 bg-gray-700 text-gray-100 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full mt-1 px-4 py-2 bg-surface0 text-text rounded-md border border-surface1 focus:outline-none focus:ring-2 focus:ring-mauve focus:border-mauve"
               />
             </div>
             <button
               type="submit"
-              className="w-full py-2 px-4 rounded-md text-indigo-400 border border-indigo-400 hover:bg-indigo-600 hover:text-white transition focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full py-2 px-4 rounded-md text-mauve border border-mauve hover:bg-mauve hover:text-base transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-mantle focus:ring-mauve"
             >
               {isLogin ? "Login" : "Sign Up"}
             </button>
@@ -132,7 +132,7 @@ const AuthPage = () => {
         <div className="mt-4 text-center">
           <button
             onClick={toggleAuthMode}
-            className="text-indigo-400 hover:underline"
+            className="text-blue hover:underline"
           >
             {isLogin
               ? "Don't have an account? Sign Up"
